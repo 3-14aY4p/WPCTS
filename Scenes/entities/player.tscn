@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://y5c13xy08oxr"]
+
+[ext_resource type="Script" uid="uid://8d32xkgaxahb" path="res://Scripts/player/player.gd" id="1_br7jp"]
+[ext_resource type="Texture2D" uid="uid://cr7qkkyafc4jm" path="res://Assets/player.png" id="2_pegit"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_pegit"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pegit"]
+bg_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amhbr"]
+bg_color = Color(0.4509804, 0.6039216, 0.3372549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
+
+[sub_resource type="Theme" id="Theme_h51i4"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_pegit")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_amhbr")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pegit"]
+size = Vector2(6, 10)
+
+[sub_resource type="Animation" id="Animation_pegit"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_amhbr"]
+resource_name = "idle_down"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_i3wst"]
+resource_name = "idle_up"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_jd4ua"]
+resource_name = "push_down"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_ruebk"]
+resource_name = "push_up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_h51i4"]
+resource_name = "walk_down"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 0]
+}
+
+[sub_resource type="Animation" id="Animation_0bti5"]
+resource_name = "walk_up"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h51i4"]
+_data = {
+&"RESET": SubResource("Animation_pegit"),
+&"idle_down": SubResource("Animation_amhbr"),
+&"idle_up": SubResource("Animation_i3wst"),
+&"push_down": SubResource("Animation_jd4ua"),
+&"push_up": SubResource("Animation_ruebk"),
+&"walk_down": SubResource("Animation_h51i4"),
+&"walk_up": SubResource("Animation_0bti5")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=1807693133 groups=["player"]]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_br7jp")
+
+[node name="PlayerMeters" type="Control" parent="." unique_id=291412853]
+z_index = 99
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PushMeterBar" type="ProgressBar" parent="PlayerMeters" unique_id=1035249870]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -22.0
+offset_right = 7.0
+offset_bottom = -18.0
+theme = SubResource("Theme_h51i4")
+max_value = 20.0
+step = 0.0
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641458383]
+texture = ExtResource("2_pegit")
+offset = Vector2(0, -7)
+hframes = 4
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=276677857]
+position = Vector2(0, -2)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_pegit")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1162990249]
+physics_interpolation_mode = 1
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=1537960194]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_pegit")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=221719693]
+libraries/ = SubResource("AnimationLibrary_h51i4")
+autoplay = &"idle_down"
