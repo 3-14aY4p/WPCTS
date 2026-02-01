@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://cbg33i5os1wki" path="res://Scripts/player/player_idle.gd" id="3_h51i4"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_pegit"]
 [ext_resource type="Script" uid="uid://n2fplcruw80h" path="res://Scripts/player/player_walk.gd" id="4_i3wst"]
+[ext_resource type="Script" uid="uid://bdyg8kki451a" path="res://Scripts/player/player_shove.gd" id="5_0bti5"]
+[ext_resource type="Script" uid="uid://cd41t6ifk5kp7" path="res://Scripts/player/player_push.gd" id="5_jd4ua"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pegit"]
 bg_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
@@ -43,6 +45,38 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hmetm"]
+resource_name = "shove_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_0n7qn"]
+resource_name = "shove_up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [20, 21]
 }
 
 [sub_resource type="Animation" id="Animation_amhbr"]
@@ -111,6 +145,38 @@ tracks/0/keys = {
 "values": [12, 13, 14, 15]
 }
 
+[sub_resource type="Animation" id="Animation_h0qrx"]
+resource_name = "release_shove_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_kx03k"]
+resource_name = "release_shove_up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [22, 23]
+}
+
 [sub_resource type="Animation" id="Animation_h51i4"]
 resource_name = "walk_down"
 length = 0.4
@@ -148,10 +214,14 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h51i4"]
 _data = {
 &"RESET": SubResource("Animation_pegit"),
+&"charge_shove_down": SubResource("Animation_hmetm"),
+&"charge_shove_up": SubResource("Animation_0n7qn"),
 &"idle_down": SubResource("Animation_amhbr"),
 &"idle_up": SubResource("Animation_i3wst"),
 &"push_down": SubResource("Animation_jd4ua"),
 &"push_up": SubResource("Animation_ruebk"),
+&"release_shove_down": SubResource("Animation_h0qrx"),
+&"release_shove_up": SubResource("Animation_kx03k"),
 &"walk_down": SubResource("Animation_h51i4"),
 &"walk_up": SubResource("Animation_0bti5")
 }
@@ -176,7 +246,15 @@ metadata/_custom_type_script = "uid://cbg33i5os1wki"
 script = ExtResource("4_i3wst")
 metadata/_custom_type_script = "uid://n2fplcruw80h"
 
-[node name="PlayerMeters" type="Control" parent="." unique_id=291412853]
+[node name="PlayerPush" type="Node" parent="StateMachine" unique_id=2005563641]
+script = ExtResource("5_jd4ua")
+metadata/_custom_type_script = "uid://cd41t6ifk5kp7"
+
+[node name="PlayerShove" type="Node" parent="StateMachine" unique_id=1056961387]
+script = ExtResource("5_0bti5")
+metadata/_custom_type_script = "uid://bdyg8kki451a"
+
+[node name="MetersUI" type="Control" parent="." unique_id=291412853]
 z_index = 99
 layout_mode = 3
 anchors_preset = 8
@@ -191,7 +269,8 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PushMeterBar" type="ProgressBar" parent="PlayerMeters" unique_id=1035249870]
+[node name="ShoveMeter" type="ProgressBar" parent="MetersUI" unique_id=1035249870]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -199,11 +278,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -7.0
-offset_top = -22.0
+offset_top = -21.0
 offset_right = 7.0
-offset_bottom = -18.0
+offset_bottom = -17.0
 theme = SubResource("Theme_h51i4")
-max_value = 20.0
+max_value = 25.0
 step = 0.0
 show_percentage = false
 
@@ -211,7 +290,7 @@ show_percentage = false
 texture = ExtResource("2_pegit")
 offset = Vector2(0, -7)
 hframes = 4
-vframes = 4
+vframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=276677857]
 position = Vector2(0, -2)
