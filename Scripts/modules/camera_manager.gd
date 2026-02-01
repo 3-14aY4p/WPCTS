@@ -8,7 +8,7 @@ extends Node
 @export var cameras : Array[PhantomCamera2D]
 var current_camera_zone : int = 0
 
-var player : Player = get_tree().get_first_node_in_group("player")
+@onready var player : Player = get_tree().get_first_node_in_group("player")
 
 # CAMERA LIMITS
 func _ready() -> void:

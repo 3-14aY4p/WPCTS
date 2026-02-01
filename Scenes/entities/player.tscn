@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://y5c13xy08oxr"]
 
 [ext_resource type="Script" uid="uid://8d32xkgaxahb" path="res://Scripts/player/player.gd" id="1_br7jp"]
+[ext_resource type="Script" uid="uid://bicv71nl5ei71" path="res://Scripts/modules/state_machine.gd" id="2_i3wst"]
 [ext_resource type="Texture2D" uid="uid://cr7qkkyafc4jm" path="res://Assets/player.png" id="2_pegit"]
+[ext_resource type="Script" uid="uid://cbg33i5os1wki" path="res://Scripts/player/player_idle.gd" id="3_h51i4"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_pegit"]
+[ext_resource type="Script" uid="uid://n2fplcruw80h" path="res://Scripts/player/player_walk.gd" id="4_i3wst"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pegit"]
 bg_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
@@ -159,6 +162,19 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_br7jp")
+
+[node name="StateMachine" type="Node" parent="." unique_id=492092906 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_i3wst")
+initial_state = NodePath("PlayerIdle")
+metadata/_custom_type_script = "uid://bicv71nl5ei71"
+
+[node name="PlayerIdle" type="Node" parent="StateMachine" unique_id=59758929]
+script = ExtResource("3_h51i4")
+metadata/_custom_type_script = "uid://cbg33i5os1wki"
+
+[node name="PlayerWalk" type="Node" parent="StateMachine" unique_id=156418091]
+script = ExtResource("4_i3wst")
+metadata/_custom_type_script = "uid://n2fplcruw80h"
 
 [node name="PlayerMeters" type="Control" parent="." unique_id=291412853]
 z_index = 99
