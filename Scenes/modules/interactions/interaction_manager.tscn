@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://d1gbsacj1makj"]
+
+[ext_resource type="Script" uid="uid://lhujisj3fyym" path="res://Scripts/modules/interactions/interaction_manager.gd" id="1_u01qk"]
+[ext_resource type="FontFile" uid="uid://csbg17k2tuhqa" path="res://Assets/fonts/superstar_memesbruh03.ttf" id="2_vf5tn"]
+
+[sub_resource type="Theme" id="Theme_y6w5l"]
+default_font = ExtResource("2_vf5tn")
+default_font_size = 8
+Label/fonts/font = ExtResource("2_vf5tn")
+
+[node name="InteractionManager" type="Node2D" unique_id=72919427]
+script = ExtResource("1_u01qk")
+
+[node name="Label" type="Label" parent="." unique_id=186070774]
+z_index = 20
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -114.0
+offset_right = 114.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = SubResource("Theme_y6w5l")
+text = "[ E ] to interact"
+horizontal_alignment = 1
+vertical_alignment = 1

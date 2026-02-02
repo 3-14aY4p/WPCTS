@@ -2,12 +2,15 @@ extends State
 class_name PlayerWalk
 
 
+var player: Player
+var player_input: Vector2
+
+func enter():
+	player = state_machine.get_parent()
+
 func physics_update(delta: float):
-	var player: Player = state_machine.get_parent()
-	var player_input = Input.get_vector("left", "right", "up", "down") 
-	
+	player_input = Input.get_vector("left", "right", "up", "down") 
 	player.velocity = player_input * player.speed
-	player.last_move_dir = player_input
 	
 	player.animation_player.play("walk_%s" % player.last_sprt_dir)
 	if player.velocity.y > 0:
