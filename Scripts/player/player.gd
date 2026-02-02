@@ -9,8 +9,8 @@ class_name Player
 @onready var shove_meter: ProgressBar = $MetersUI/ShoveMeter
 
 var last_sprt_dir: String = "down" #for sprite face direction
-var mouse_direction: Vector2 #for aiming shove
+var mouse_dir: Vector2 #for aiming shove
 
 
 func _physics_process(delta: float) -> void:
-	mouse_direction = get_local_mouse_position().normalized()
+	mouse_dir = get_local_mouse_position().normalized()

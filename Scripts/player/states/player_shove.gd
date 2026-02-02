@@ -11,10 +11,11 @@ func enter():
 	player.animation_player.play("charge_shove_%s" % player.last_sprt_dir)
 
 func physics_update(delta: float):
-	player.shove_meter.value += 0.25
+	player.shove_meter.value += 1
 
 func handle_input(event: InputEvent):
 	if Input.is_action_just_released("shove"):
+		#i need the player to shove the object in the direction of the mouse
 		player.animation_player.play("release_shove_%s" % player.last_sprt_dir)
 		player.shove_meter.hide()
 		player.shove_meter.value = 0

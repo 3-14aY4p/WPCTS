@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_pegit"]
 [ext_resource type="Script" uid="uid://n2fplcruw80h" path="res://Scripts/player/states/player_walk.gd" id="4_i3wst"]
 [ext_resource type="Script" uid="uid://bdyg8kki451a" path="res://Scripts/player/states/player_shove.gd" id="5_0bti5"]
-[ext_resource type="Script" uid="uid://cd41t6ifk5kp7" path="res://Scripts/player/states/player_push.gd" id="5_jd4ua"]
+[ext_resource type="Script" uid="uid://cd41t6ifk5kp7" path="res://Scripts/player/states/player_grab.gd" id="6_jd4ua"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pegit"]
 bg_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
@@ -79,6 +79,38 @@ tracks/0/keys = {
 "values": [20, 21]
 }
 
+[sub_resource type="Animation" id="Animation_jd4ua"]
+resource_name = "grab_down"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_ruebk"]
+resource_name = "grab_up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
 [sub_resource type="Animation" id="Animation_amhbr"]
 resource_name = "idle_down"
 length = 0.1
@@ -111,38 +143,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_jd4ua"]
-resource_name = "push_down"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11]
-}
-
-[sub_resource type="Animation" id="Animation_ruebk"]
-resource_name = "push_up"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [12, 13, 14, 15]
 }
 
 [sub_resource type="Animation" id="Animation_h0qrx"]
@@ -216,10 +216,10 @@ _data = {
 &"RESET": SubResource("Animation_pegit"),
 &"charge_shove_down": SubResource("Animation_hmetm"),
 &"charge_shove_up": SubResource("Animation_0n7qn"),
+&"grab_down": SubResource("Animation_jd4ua"),
+&"grab_up": SubResource("Animation_ruebk"),
 &"idle_down": SubResource("Animation_amhbr"),
 &"idle_up": SubResource("Animation_i3wst"),
-&"push_down": SubResource("Animation_jd4ua"),
-&"push_up": SubResource("Animation_ruebk"),
 &"release_shove_down": SubResource("Animation_h0qrx"),
 &"release_shove_up": SubResource("Animation_kx03k"),
 &"walk_down": SubResource("Animation_h51i4"),
@@ -246,8 +246,8 @@ metadata/_custom_type_script = "uid://cbg33i5os1wki"
 script = ExtResource("4_i3wst")
 metadata/_custom_type_script = "uid://n2fplcruw80h"
 
-[node name="PlayerPush" type="Node" parent="StateMachine" unique_id=2005563641]
-script = ExtResource("5_jd4ua")
+[node name="PlayerGrab" type="Node" parent="StateMachine" unique_id=314243990]
+script = ExtResource("6_jd4ua")
 metadata/_custom_type_script = "uid://cd41t6ifk5kp7"
 
 [node name="PlayerShove" type="Node" parent="StateMachine" unique_id=1056961387]
@@ -262,10 +262,6 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -282,7 +278,6 @@ offset_top = -21.0
 offset_right = 7.0
 offset_bottom = -17.0
 theme = SubResource("Theme_h51i4")
-max_value = 25.0
 step = 0.0
 show_percentage = false
 
