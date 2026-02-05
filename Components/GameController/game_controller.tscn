@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://brny4rnqhj6wt"]
+
+[ext_resource type="Script" uid="uid://ob42ngviv40s" path="res://Components/GameController/game_controller.gd" id="1_jbcng"]
+[ext_resource type="PackedScene" uid="uid://bdo4dioigr6ea" path="res://Components/Rooms/dorm_room.tscn" id="2_2tapk"]
+
+[node name="GameController" type="Node" unique_id=670006160 node_paths=PackedStringArray("world_2d", "gui", "current_2d_scene")]
+script = ExtResource("1_jbcng")
+world_2d = NodePath("World2D")
+gui = NodePath("GUI")
+current_2d_scene = NodePath("World2D/DormRoom")
+metadata/_custom_type_script = "uid://ob42ngviv40s"
+
+[node name="World2D" type="Node2D" parent="." unique_id=2036424849]
+
+[node name="DormRoom" parent="World2D" unique_id=452890962 instance=ExtResource("2_2tapk")]
+
+[node name="GUI" type="Control" parent="." unique_id=1998385053]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

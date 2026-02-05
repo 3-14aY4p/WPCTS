@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cnlfarynwyvu4"]
+
+[ext_resource type="Script" uid="uid://ccdplhdhx0nij" path="res://Components/Player/player.gd" id="1_7iwu5"]
+[ext_resource type="Texture2D" uid="uid://w7yp78hw0iol" path="res://Assets/art/player.png" id="2_1xasy"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_m62op"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xasy"]
+size = Vector2(8, 8)
+
+[node name="Player" type="CharacterBody2D" unique_id=1050916810 groups=["player"]]
+z_index = 1
+script = ExtResource("1_7iwu5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=450463596]
+texture = ExtResource("2_1xasy")
+offset = Vector2(0, -6)
+hframes = 4
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=96539627]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_1xasy")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1054868773]
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=584287184]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_m62op")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"

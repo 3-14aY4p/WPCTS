@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://brmfuwbuvsm0q"]
-
-[ext_resource type="Script" uid="uid://dgqxokgnhmhx5" path="res://Scripts/modules/camera_manager.gd" id="1_xrue8"]
-
-[node name="CameraManager" type="Node" unique_id=1990977972]
-script = ExtResource("1_xrue8")
-
-[node name="CameraNodes" type="StaticBody2D" parent="." unique_id=169463707]
