@@ -5,11 +5,13 @@
 [ext_resource type="Script" uid="uid://ccp23jdfv4mhp" path="res://Components/CameraManager/camera_manager.gd" id="1_sd2qi"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_qsylf"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_sd2qi"]
+[ext_resource type="PackedScene" uid="uid://cka4vs4ia2m20" path="res://Components/Objects/object.tscn" id="6_47re4"]
 
 [sub_resource type="Resource" id="Resource_sd2qi"]
 script = ExtResource("4_sd2qi")
 
 [node name="DormRoom" type="Node2D" unique_id=452890962]
+y_sort_enabled = true
 
 [node name="CameraManager" type="Node" parent="." unique_id=758248049 node_paths=PackedStringArray("cameras")]
 script = ExtResource("1_sd2qi")
@@ -35,6 +37,15 @@ tile_map_data = PackedByteArray("AAACAAEAAAAEAAEAAAACAAIAAAAEAAEAAAACAAMAAAAEAAE
 
 [node name="Room" parent="TileMaps" index="2" unique_id=1676984464]
 tile_map_data = PackedByteArray("AAADAAIAAAAAAAEAAAADAAMAAAACAAEAAAADAAQAAAACAAEAAAADAAEAAAAAAAAAAAADAAUAAAACAAEAAAADAAYAAAACAAEAAAAEAAEAAAADAAAAAAAEAAIAAAAAAAEAAAAEAAMAAAACAAEAAAAEAAQAAAACAAEAAAAEAAUAAAACAAEAAAAEAAYAAAACAAEAAAAFAAEAAAAAAAIAAAAFAAIAAAAAAAEAAAAFAAMAAAACAAEAAAAFAAQAAAACAAEAAAAFAAUAAAACAAEAAAAFAAYAAAACAAEAAAAGAAEAAAACAAAAAAAGAAIAAAABAAEAAAAGAAMAAAACAAEAAAAGAAQAAAACAAEAAAAGAAUAAAACAAEAAAAGAAYAAAACAAEAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAEAAAAHAAMAAAACAAEAAAAHAAQAAAACAAEAAAAHAAUAAAACAAEAAAAHAAYAAAACAAEAAAA=")
+
+[node name="Objects" type="Node2D" parent="." unique_id=1686050512]
+y_sort_enabled = true
+
+[node name="Object" parent="Objects" unique_id=25186628 instance=ExtResource("6_47re4")]
+position = Vector2(96, 80)
+
+[node name="Object2" parent="Objects" unique_id=1944296550 instance=ExtResource("6_47re4")]
+position = Vector2(110, 96)
 
 [node name="Player" parent="." unique_id=1050916810 instance=ExtResource("1_fcyx1")]
 position = Vector2(104, 45)
