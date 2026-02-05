@@ -20,7 +20,6 @@ func physics_update(delta: float):
 func handle_input(event: InputEvent):
 	if Input.is_action_just_released("shove"):
 		player.animation_player.play("release_shove_%s" % player.last_sprt_dir)
-		player.set_collision_layer_value(3, true)
 		
 		var c = player.look_direction.get_collider()
 		if c is Objects and player.look_direction.is_colliding():
@@ -31,7 +30,9 @@ func handle_input(event: InputEvent):
 		
 		if player.velocity == Vector2.ZERO:
 			await player.animation_player.animation_finished
+			player.set_collision_layer_value(3, true)
 			state_machine.change_state("playeridle")
 		else:
 			await player.animation_player.animation_finished
+			player.set_collision_layer_value(3, true)
 			state_machine.change_state("playerwalk")

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bv73rwl3rtx5n" path="res://Assets/art/objects.png" id="1_usxpm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kdswg"]
-bounce = 0.3
+bounce = 0.55
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_usxpm"]
 size = Vector2(14, 6)
