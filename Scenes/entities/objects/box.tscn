@@ -1,18 +1,30 @@
 [gd_scene format=3 uid="uid://b3nb4x81yfbjv"]
 
 [ext_resource type="PackedScene" uid="uid://d2jn47dxf11kk" path="res://Scenes/modules/interactions/interaction_area.tscn" id="1_57xdr"]
+[ext_resource type="Script" uid="uid://bicv71nl5ei71" path="res://Scripts/modules/state machine/state_machine.gd" id="1_kdswg"]
+[ext_resource type="Script" uid="uid://b0bwxsohweghs" path="res://Scripts/objects/objects.gd" id="1_nyuyf"]
 [ext_resource type="Texture2D" uid="uid://bv73rwl3rtx5n" path="res://Assets/art/objects.png" id="1_usxpm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kdswg"]
+bounce = 0.3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_usxpm"]
 size = Vector2(14, 6)
 
-[node name="Box" type="RigidBody2D" unique_id=1746896959 groups=["grabbable"]]
+[node name="Box" type="RigidBody2D" unique_id=1746896959 groups=["objects"]]
 z_index = 1
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 15
-gravity_scale = 0.0
+physics_material_override = SubResource("PhysicsMaterial_kdswg")
 lock_rotation = true
+linear_damp_mode = 1
+linear_damp = 5.0
+script = ExtResource("1_nyuyf")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1687504263]
+script = ExtResource("1_kdswg")
+metadata/_custom_type_script = "uid://bicv71nl5ei71"
 
 [node name="InteractionArea" parent="." unique_id=1730564579 instance=ExtResource("1_57xdr")]
 

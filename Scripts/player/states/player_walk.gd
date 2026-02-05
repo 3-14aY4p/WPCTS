@@ -32,5 +32,6 @@ func physics_update(delta: float):
 func handle_input(event: InputEvent):
 	if Input.is_action_just_pressed("grab"):
 		state_machine.change_state("playergrab")
+		
 	elif Input.is_action_just_pressed("shove"):
 		state_machine.change_state("playershove")

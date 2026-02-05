@@ -19,5 +19,6 @@ func handle_input(event: InputEvent):
 	if Input.is_action_just_released("grab"):
 		if player_input == Vector2.ZERO:
 			state_machine.change_state("playeridle")
+			
 		elif player_input != Vector2.ZERO:
 			state_machine.change_state("playerwalk")
