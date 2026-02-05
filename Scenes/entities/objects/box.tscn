@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://b3nb4x81yfbjv"]
 
-[ext_resource type="PackedScene" uid="uid://d2jn47dxf11kk" path="res://Scenes/modules/interactions/interaction_area.tscn" id="1_57xdr"]
 [ext_resource type="Script" uid="uid://bicv71nl5ei71" path="res://Scripts/modules/state machine/state_machine.gd" id="1_kdswg"]
 [ext_resource type="Script" uid="uid://b0bwxsohweghs" path="res://Scripts/objects/objects.gd" id="1_nyuyf"]
 [ext_resource type="Texture2D" uid="uid://bv73rwl3rtx5n" path="res://Assets/art/objects.png" id="1_usxpm"]
@@ -25,10 +24,6 @@ script = ExtResource("1_nyuyf")
 [node name="StateMachine" type="Node" parent="." unique_id=1687504263]
 script = ExtResource("1_kdswg")
 metadata/_custom_type_script = "uid://bicv71nl5ei71"
-
-[node name="InteractionArea" parent="." unique_id=1730564579 instance=ExtResource("1_57xdr")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1173946652]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=50321037]
 texture = ExtResource("1_usxpm")

@@ -9,11 +9,8 @@ func enter():
 	player = state_machine.get_parent()
 
 func physics_update(delta: float):
-	player_input = Input.get_vector("left", "right", "up", "down")
-	player.velocity = player_input * (player.speed / 3)
-	
+	player.handle_movement(player.default_speed/3) # device formula that incorporates object mass
 	player.animation_player.play("grab_%s" % player.last_sprt_dir)
-	player.move_and_slide()
 
 func handle_input(event: InputEvent):
 	if Input.is_action_just_released("grab"):

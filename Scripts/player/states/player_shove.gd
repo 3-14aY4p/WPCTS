@@ -12,6 +12,9 @@ func enter():
 	player.animation_player.play("charge_shove_%s" % player.last_sprt_dir)
 
 func physics_update(delta: float):
+	player.handle_sprt_dir()
+	
+	player.handle_movement(player.default_speed/4.5)
 	player.shove_meter.value += 1
 
 func handle_input(event: InputEvent):

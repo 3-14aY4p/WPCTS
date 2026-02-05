@@ -8,6 +8,7 @@ func enter():
 	player = state_machine.get_parent()
 
 func physics_update(delta: float):
+	player.handle_sprt_dir()
 	player.animation_player.play("idle_%s" % player.last_sprt_dir)
 
 func handle_input(event: InputEvent):
