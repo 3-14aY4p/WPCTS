@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d0kyujlab25db"]
+
+[ext_resource type="PackedScene" uid="uid://vladrj6r2skm" path="res://Components/InteractionModule/interaction_area.tscn" id="1_55i3k"]
+[ext_resource type="Script" uid="uid://cff7xpk757orj" path="res://Components/StaticObjects/bed.gd" id="1_dujuo"]
+[ext_resource type="Texture2D" uid="uid://c4gb70iui3j7n" path="res://Assets/art/staticObjects.png" id="1_x5lqc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7jtd"]
+size = Vector2(30, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5lqc"]
+size = Vector2(28, 12)
+
+[node name="Bed" type="StaticBody2D" unique_id=777938724 groups=["interactables"]]
+z_index = 1
+collision_mask = 0
+script = ExtResource("1_dujuo")
+
+[node name="InteractionArea" parent="." unique_id=1730564579 instance=ExtResource("1_55i3k")]
+action_hint = "[ E ] sleep"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=62716082]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_k7jtd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=581908639]
+texture = ExtResource("1_x5lqc")
+offset = Vector2(0, -7)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1072391562]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_x5lqc")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

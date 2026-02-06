@@ -7,7 +7,7 @@
 bounce = 0.45
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h37a2"]
-size = Vector2(8, 6)
+size = Vector2(12, 5)
 
 [node name="Object" type="RigidBody2D" unique_id=25186628 groups=["objects"]]
 z_index = 1
@@ -27,5 +27,5 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1592867833]
-position = Vector2(0, -2)
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_h37a2")

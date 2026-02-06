@@ -7,6 +7,7 @@ var player: Player
 func enter():
 	player = state_machine.get_parent()
 	player.shove_meter.show()
+	player.set_collision_layer_value(4, false)
 	
 	player.animation_player.play("player/shove_charge")
 
@@ -23,6 +24,7 @@ func handle_input(event: InputEvent):
 		if c is Objects and player.aim_ray_cast.is_colliding():
 			c.apply_central_impulse(player.mouse_dir * player.shove_meter.value)
 		
+		player.set_collision_layer_value(4, true)
 		player.shove_meter.value = 0
 		
 		await player.animation_player.animation_finished

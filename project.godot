@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*uid://3dtoeip454uv"
 PhantomCameraManager="*uid://duq6jhf6unyis"
+InteractionManager="*uid://bqn7rg105nyyl"
 
 [display]
 
@@ -36,6 +37,7 @@ enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 player=""
 bounds=""
 objects=""
+interactables=""
 
 [input]
 

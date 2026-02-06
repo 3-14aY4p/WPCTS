@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://d00j6hrwxh0m4"]
+
+[ext_resource type="PackedScene" uid="uid://vladrj6r2skm" path="res://Components/InteractionModule/interaction_area.tscn" id="1_3ad4n"]
+[ext_resource type="Texture2D" uid="uid://c4gb70iui3j7n" path="res://Assets/art/staticObjects.png" id="1_8sjac"]
+[ext_resource type="Script" uid="uid://dujvrvg52kw5b" path="res://Components/StaticObjects/study_table.gd" id="1_x6wqy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6wqy"]
+size = Vector2(28, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8sjac"]
+size = Vector2(26, 10)
+
+[node name="StudyTable" type="StaticBody2D" unique_id=952759821]
+z_index = 1
+script = ExtResource("1_x6wqy")
+
+[node name="InteractionArea" parent="." unique_id=1730564579 instance=ExtResource("1_3ad4n")]
+action_hint = "[ E ] study"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1159286871]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_x6wqy")
+
+[node name="Sprites" type="Node2D" parent="." unique_id=1493328716]
+
+[node name="Table" type="Sprite2D" parent="Sprites" unique_id=926303276]
+texture = ExtResource("1_8sjac")
+offset = Vector2(0, -7)
+region_enabled = true
+region_rect = Rect2(0, 16, 32, 16)
+
+[node name="Chair" type="Sprite2D" parent="Sprites" unique_id=1822131033]
+position = Vector2(-4, 0)
+texture = ExtResource("1_8sjac")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1324161880]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_8sjac")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

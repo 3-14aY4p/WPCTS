@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://bqn7rg105nyyl"]
 
 [ext_resource type="Script" uid="uid://b31mnfo17bq3" path="res://Components/InteractionModule/interaction_manager.gd" id="1_u2xuu"]
-[ext_resource type="FontFile" uid="uid://dxaifg8x56hyw" path="res://Assets/font/superstar_memesbruh03.ttf" id="2_6t5l5"]
-
-[sub_resource type="Theme" id="Theme_y6w5l"]
-default_font = ExtResource("2_6t5l5")
-default_font_size = 8
-Label/fonts/font = ExtResource("2_6t5l5")
+[ext_resource type="FontFile" uid="uid://ckbixblavooub" path="res://Assets/font/Pixel Millennium.ttf" id="2_6t5l5"]
 
 [node name="InteractionManager" type="Node2D" unique_id=72919427]
 script = ExtResource("1_u2xuu")
@@ -16,11 +11,14 @@ z_index = 20
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -114.0
-offset_right = 114.0
-offset_bottom = 23.0
+offset_left = -56.0
+offset_right = 56.0
+offset_bottom = 16.0
 grow_horizontal = 2
-theme = SubResource("Theme_y6w5l")
+theme_override_colors/font_outline_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_6t5l5")
+theme_override_font_sizes/font_size = 8
 text = "[ E ] to interact"
 horizontal_alignment = 1
 vertical_alignment = 1
