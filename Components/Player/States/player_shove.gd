@@ -9,6 +9,8 @@ func enter():
 	player.shove_meter.show()
 	player.set_collision_layer_value(4, false)
 	
+	InteractionManager.can_interact = false
+	
 	player.animation_player.play("player/shove_charge")
 
 func physics_update(delta: float):
@@ -28,6 +30,8 @@ func handle_input(event: InputEvent):
 		player.shove_meter.value = 0
 		
 		await player.animation_player.animation_finished
+		
+		InteractionManager.can_interact = true
 		
 		if player.velocity == Vector2.ZERO:
 			state_machine.change_state("playeridle")

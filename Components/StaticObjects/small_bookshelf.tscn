@@ -14,6 +14,7 @@ size = Vector2(12, 5)
 script = ExtResource("1_8o7u3")
 
 [node name="InteractionArea" parent="." unique_id=1730564579 instance=ExtResource("1_1dtym")]
+z_index = 1
 action_hint = "[ E ] read"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1777662020]
