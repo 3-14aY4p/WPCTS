@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://cqkcij54l0o6a"]
+
+[ext_resource type="Script" uid="uid://b8qh4qe2lac4f" path="res://Components/DialogueSystem/dialogue_system.gd" id="1_tnikc"]
+[ext_resource type="Texture2D" uid="uid://cjam3qi26j4u8" path="res://Assets/art/portrait_mc.png" id="1_yeg2y"]
+[ext_resource type="FontFile" uid="uid://brask5l0thh1d" path="res://Assets/font/Early GameBoy.ttf" id="2_tnikc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00qnl"]
+bg_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.69803923, 0.7607843, 0.49019608, 1)
+
+[sub_resource type="Theme" id="Theme_00qnl"]
+Panel/styles/panel = SubResource("StyleBoxFlat_00qnl")
+
+[node name="DialogueSystem" type="Node2D" unique_id=134562484]
+z_index = 4096
+script = ExtResource("1_tnikc")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=536914519]
+offset_left = -147.0
+offset_top = -31.0
+offset_right = 147.0
+offset_bottom = 31.0
+color = Color(0.20784314, 0.23921569, 0.27450982, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=1506241988]
+offset_left = -144.0
+offset_top = -28.0
+offset_right = 144.0
+offset_bottom = 28.0
+theme = SubResource("Theme_00qnl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=805604716]
+offset_left = -144.0
+offset_top = -28.0
+offset_right = 144.0
+offset_bottom = 28.0
+
+[node name="SpeakerParent" type="Control" parent="HBoxContainer" unique_id=746050960]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/SpeakerParent" unique_id=419427019]
+layout_mode = 0
+offset_left = 73.0
+offset_top = -7.0
+offset_right = 277.0
+offset_bottom = 8.0
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.69803923, 0.7607843, 0.49019608, 1)
+theme_override_colors/font_outline_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/normal_font = ExtResource("2_tnikc")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = " speaker name"
+scroll_active = false
+vertical_alignment = 2
+visible_characters_behavior = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/SpeakerParent" unique_id=1372999112]
+position = Vector2(34, 2)
+scale = Vector2(2.0833333, 2.0833333)
+texture = ExtResource("1_yeg2y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1689190898]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=1653449346]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.69803923, 0.7607843, 0.49019608, 1)
+theme_override_fonts/normal_font = ExtResource("2_tnikc")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "sample dialog here yippee!"
+scroll_active = false
+vertical_alignment = 1
+visible_characters_behavior = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=1204393291]
+visible = false
+layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=415841503]
+max_polyphony = 1000

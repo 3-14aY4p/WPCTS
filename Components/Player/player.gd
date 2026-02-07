@@ -1,6 +1,8 @@
 class_name Player extends CharacterBody2D
 
 
+@onready var state_machine: StateMachine = $StateMachine
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var shove_meter: ProgressBar = $MiniHUD/ShoveMeter
