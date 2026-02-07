@@ -1,7 +1,7 @@
 class_name DialogueSystem extends Node2D
 
 
-const DialogueButtonPreload = preload("res://Components/DialogueSystem/dialogue_button.tscn")
+const DialogueButtonPreload = preload("uid://doepsjtwtxuq1")
 
 @onready var speaker_name: RichTextLabel = $HBoxContainer/SpeakerParent/RichTextLabel
 @onready var speaker_sprite: Sprite2D = $HBoxContainer/SpeakerParent/Sprite2D
@@ -153,7 +153,7 @@ func _text_resource(i: DialogueText) -> void:
 	
 	while dialogue_label.visible_characters < total_characters:
 		#skipping dialogue
-		if Input.is_action_just_pressed("_interact"):
+		if Input.is_action_just_pressed("_cancel"):
 			dialogue_label.visible_characters = total_characters
 			break
 		
@@ -163,7 +163,27 @@ func _text_resource(i: DialogueText) -> void:
 			var character: String = text_without_square_brackets[dialogue_label.visible_characters]
 			dialogue_label.visible_characters += 1
 			if character != " ":
-				pass
+				audio_stream_player.pitch_scale = randf_range(i.text_volume_pitch_min, i.text_volume_pitch_max)
+				audio_stream_player.play()
+				if i.speaker_img_Hframes != 1:
+					if speaker_sprite.frame < i.speaker_img_Hframes - 1:
+						speaker_sprite.frame += 1
+					else:
+						speaker_sprite.frame = 0
+			
+			character_timer = 0.0
+			
+		#this enables the while loop to run like the _process() function
+		await get_tree().process_frame
+	
+	speaker_sprite.frame = min(i.speaker_img_rest_frame, i.speaker_img_Hframes - 1)
+	
+	while true:
+		await get_tree().process_frame
+		if dialogue_label.visible_characters == total_characters:
+			if Input.is_action_just_pressed("_interact"):
+				current_dialogue_item += 1
+				next_item = true
 
 #[] -> sign of BBCode; we don't want them included in the char visible count
 func _text_without_square_brackets(text: String) -> String:
