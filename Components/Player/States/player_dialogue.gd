@@ -9,3 +9,4 @@ func enter():
 
 func physics_update(delta: float):
 	player.animation_player.play("player/idle")
+	InteractionManager.can_interact = false

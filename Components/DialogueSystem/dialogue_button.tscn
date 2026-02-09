@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://doepsjtwtxuq1"]
+[gd_scene format=3 uid="uid://duwv6yl4tc7by"]
 
-[ext_resource type="FontFile" uid="uid://brask5l0thh1d" path="res://Assets/font/Early GameBoy.ttf" id="1_pjxwy"]
+[ext_resource type="FontFile" uid="uid://bthadkgdkntt8" path="res://Assets/font/superstar_memesbruh03.ttf" id="1_pjxwy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pjxwy"]
 
@@ -13,14 +13,13 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqi36"]
 
 [node name="DialogueButton" type="Button" unique_id=231481472]
-offset_right = 8.0
-offset_bottom = 8.0
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.69803923, 0.7607843, 0.49019608, 1)
+theme_override_colors/font_color = Color(0.4509804, 0.6039216, 0.3372549, 1)
 theme_override_colors/font_focus_color = Color(0.25882354, 0.4, 0.3529412, 1)
 theme_override_colors/font_pressed_color = Color(0.25882354, 0.4, 0.3529412, 1)
 theme_override_colors/font_hover_color = Color(0.25882354, 0.4, 0.3529412, 1)
 theme_override_fonts/font = ExtResource("1_pjxwy")
+theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxEmpty_pjxwy")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_4bpak")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_12foo")

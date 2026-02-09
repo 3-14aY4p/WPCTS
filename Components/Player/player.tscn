@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_m62op"]
 [ext_resource type="Script" uid="uid://davqupyjmtqu7" path="res://Components/Player/States/player_walk.gd" id="4_dcc5r"]
 [ext_resource type="Script" uid="uid://c6wkqtusrm5kg" path="res://Components/Player/States/player_shove.gd" id="5_pc5nc"]
+[ext_resource type="Script" uid="uid://cwvgey1trwr3f" path="res://Components/Player/States/player_dialogue.gd" id="6_kndqg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcc5r"]
 bg_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
@@ -168,6 +169,10 @@ metadata/_custom_type_script = "uid://davqupyjmtqu7"
 [node name="PlayerShove" type="Node" parent="StateMachine" unique_id=1065641570]
 script = ExtResource("5_pc5nc")
 metadata/_custom_type_script = "uid://c6wkqtusrm5kg"
+
+[node name="PlayerDialogue" type="Node" parent="StateMachine" unique_id=1610908800]
+script = ExtResource("6_kndqg")
+metadata/_custom_type_script = "uid://cwvgey1trwr3f"
 
 [node name="PlayerAim" type="Node2D" parent="." unique_id=840922595]
 

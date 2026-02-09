@@ -1,9 +1,7 @@
 class_name DialogueChoice extends DE
 
-@export var speaker_name: String 
-@export var speaker_img: Texture
-@export var speaker_img_rest_frame: int = 0 
-@export var speaker_img_Hframes: int = 1 
+@export var speaker_name: String
+@export var speaker_anim: String
 
 @export_multiline var text: String
 

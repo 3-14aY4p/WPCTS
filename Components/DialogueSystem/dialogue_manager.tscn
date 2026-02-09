@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://b2tmm2aequm2a"]
+
+[ext_resource type="Script" uid="uid://eqvjk84g40ou" path="res://Components/DialogueSystem/dialogue_manager.gd" id="1_r4s6j"]
+[ext_resource type="Texture2D" uid="uid://bqbqdknptsofc" path="res://Assets/art/UI/dialogue_box.png" id="1_tra1r"]
+[ext_resource type="Texture2D" uid="uid://u0vg8vug2jvi" path="res://Assets/art/portraits/mc_neutral.png" id="2_t1613"]
+[ext_resource type="Texture2D" uid="uid://qfyuff61b341" path="res://Assets/art/portraits/temp_neutral.png" id="3_vmmjh"]
+[ext_resource type="FontFile" uid="uid://bthadkgdkntt8" path="res://Assets/font/superstar_memesbruh03.ttf" id="4_sdixd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vmmjh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t1613")
+}],
+"loop": true,
+"name": &"mc_neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vmmjh")
+}],
+"loop": true,
+"name": &"temp_neutral",
+"speed": 5.0
+}]
+
+[node name="DialogueManager" type="Control" unique_id=1833538949]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_r4s6j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=440206541]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer" unique_id=881031371]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -139.0
+offset_top = -71.0
+offset_right = 139.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_tra1r")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="SpeakerParent" type="Control" parent="CanvasLayer" unique_id=584662149]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -63.0
+offset_right = 131.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SpeakerName" type="RichTextLabel" parent="CanvasLayer/SpeakerParent" unique_id=1224317647]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.011000001
+anchor_top = -0.18
+anchor_right = -0.011000001
+anchor_bottom = -0.18
+offset_left = 66.882
+offset_top = -4.0
+offset_right = 264.882
+offset_bottom = 4.0
+theme_override_colors/default_color = Color(0.69803923, 0.7607843, 0.49019608, 1)
+theme_override_colors/font_outline_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("4_sdixd")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "speaker name"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="SpeakerSprite" type="AnimatedSprite2D" parent="CanvasLayer/SpeakerParent" unique_id=924589159]
+position = Vector2(29, 3)
+scale = Vector2(1.9999999, 1.9999999)
+sprite_frames = SubResource("SpriteFrames_vmmjh")
+animation = &"temp_neutral"
+
+[node name="DialogueBox" type="VBoxContainer" parent="CanvasLayer" unique_id=533653048]
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -63.0
+offset_right = 99.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+
+[node name="DialogueLabel" type="RichTextLabel" parent="CanvasLayer/DialogueBox" unique_id=110174649]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.69803923, 0.7607843, 0.49019608, 1)
+theme_override_fonts/normal_font = ExtResource("4_sdixd")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "dialogue label"
+scroll_active = false
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ButtonContainer" type="HBoxContainer" parent="CanvasLayer/DialogueBox" unique_id=1111052375]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
