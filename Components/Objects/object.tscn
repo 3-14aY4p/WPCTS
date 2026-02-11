@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cka4vs4ia2m20"]
 
 [ext_resource type="Texture2D" uid="uid://bqd70ycen1mdb" path="res://Assets/art/objects.png" id="1_h37a2"]
-[ext_resource type="Script" uid="uid://qv66b1w44rlh" path="res://Components/Objects/object.gd" id="1_xnplj"]
+[ext_resource type="Script" uid="uid://qv66b1w44rlh" path="res://Components/Objects/_object.gd" id="1_xnplj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnplj"]
 bounce = 0.45

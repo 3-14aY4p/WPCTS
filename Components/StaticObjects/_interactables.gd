@@ -10,7 +10,7 @@ class_name Interactables extends Node
 func _ready() -> void:
 	interaction_area.interact = Callable(self, "_on_interact")
 
-func instantiate_new_dialogue():
+func trigger_dialogue():
 	if not dialogue.is_empty():
 		player.state_machine.change_state("playerdialogue")
 		var dm =  preload("uid://b2tmm2aequm2a").instantiate()

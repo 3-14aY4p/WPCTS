@@ -1,10 +1,12 @@
 class_name DialogueManager extends Control
 
 
-@onready var speaker_name: RichTextLabel = $CanvasLayer/SpeakerParent/SpeakerName
-@onready var speaker_anim: AnimatedSprite2D = $CanvasLayer/SpeakerParent/SpeakerSprite
-@onready var dialogue_label: RichTextLabel = $CanvasLayer/DialogueBox/DialogueLabel
-@onready var button_container: HBoxContainer = $CanvasLayer/DialogueBox/ButtonContainer
+@onready var speaker_name: RichTextLabel = $CanvasLayer/NinePatchRect/SpeakerName
+@onready var speaker_parent: Control = $CanvasLayer/HBoxContainer/SpeakerParent
+@onready var speaker_anim: AnimatedSprite2D = $CanvasLayer/HBoxContainer/SpeakerParent/SpeakerSprite
+@onready var dialogue_label: RichTextLabel = $CanvasLayer/HBoxContainer/TextBox/DialogueLabel
+@onready var button_container: HBoxContainer = $CanvasLayer/HBoxContainer/TextBox/ButtonContainer
+@onready var indicator: AnimatedSprite2D = $CanvasLayer/NinePatchRect/Indicator
 
 @onready var player: Player = get_tree().get_first_node_in_group("player")
 
@@ -18,12 +20,6 @@ func _ready() -> void:
 	button_container.visible = false
 
 func _process(delta: float) -> void:
-	if current_dialogue_item == dialogue.size():
-		player.state_machine.change_state("playeridle")
-		queue_free()
-		
-		return
-	
 	if next_item:
 		next_item = false
 		var i = dialogue[current_dialogue_item]
@@ -48,18 +44,22 @@ func _process(delta: float) -> void:
 			current_dialogue_item += 1
 			next_item = true
 
-func _function_resource():
-	pass
-	
-func _choice_resource():
-	pass
-	
-func _text_resource():
+func _function_resource(i: DialogueFunction):
 	pass
 
-func set_speaker(name: String, anim: String):
-	speaker_name.text = name
-	speaker_anim.play(anim)
+func _choice_resource(i: DialogueChoice):
+	pass
+
+func _text_resource(i: DialogueText):
+	if not i.speaker_anim:
+		speaker_parent.visible = false
+	else:
+		speaker_name.text = i.speaker_name
+		speaker_anim.play(i.speaker_anim)
+		
+	reveal_dialogue(i.text, i.text_speed)
+
+
 
 func reveal_dialogue(text: String, speed: float):
 	dialogue_label.visible_ratio = 0
