@@ -7,10 +7,12 @@ class_name Player extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var shove_meter: ProgressBar = $MiniHUD/ShoveMeter
 @onready var aim_ray_cast: RayCast2D = $PlayerAim/AimRayCast
+@onready var aim_direction: Marker2D = $PlayerAim/AimRayCast/AimDirection
 
 @export var default_speed = 60
-var mouse_dir: Vector2
 
+
+var mouse_dir: Vector2
 
 func _physics_process(delta: float) -> void:
 	mouse_dir = get_local_mouse_position().normalized()

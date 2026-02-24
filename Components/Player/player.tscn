@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://davqupyjmtqu7" path="res://Components/Player/States/player_walk.gd" id="4_dcc5r"]
 [ext_resource type="Script" uid="uid://c6wkqtusrm5kg" path="res://Components/Player/States/player_shove.gd" id="5_pc5nc"]
 [ext_resource type="Script" uid="uid://cwvgey1trwr3f" path="res://Components/Player/States/player_dialogue.gd" id="6_kndqg"]
+[ext_resource type="Script" uid="uid://dw4d21gp0jvra" path="res://Components/EntityComponent/KnockbackComponent.gd" id="9_lakyf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcc5r"]
 bg_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
@@ -47,6 +48,23 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1yt0s"]
 _data = {
 &"RESET": SubResource("Animation_lakyf")
+}
+
+[sub_resource type="Animation" id="Animation_l83wq"]
+resource_name = "carry"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [18, 19, 20, 21]
 }
 
 [sub_resource type="Animation" id="Animation_dcc5r"]
@@ -115,6 +133,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lakyf"]
 _data = {
+&"carry": SubResource("Animation_l83wq"),
 &"idle": SubResource("Animation_dcc5r"),
 &"shove_charge": SubResource("Animation_pc5nc"),
 &"shove_release": SubResource("Animation_1yt0s"),
@@ -153,6 +172,12 @@ theme = SubResource("Theme_kndqg")
 step = 0.0
 show_percentage = false
 
+[node name="Components" type="Node" parent="." unique_id=800891366]
+
+[node name="KnockbackComponent" type="Node" parent="Components" unique_id=738801199]
+script = ExtResource("9_lakyf")
+metadata/_custom_type_script = "uid://dw4d21gp0jvra"
+
 [node name="StateMachine" type="Node" parent="." unique_id=526139733 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_rid5b")
 initial_state = NodePath("PlayerIdle")
@@ -181,11 +206,14 @@ position = Vector2(0, -2)
 target_position = Vector2(8, 0)
 collision_mask = 6
 
+[node name="AimDirection" type="Marker2D" parent="PlayerAim/AimRayCast" unique_id=750125203]
+position = Vector2(8, 0)
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=450463596]
 texture = ExtResource("2_1xasy")
 offset = Vector2(0, -8)
 hframes = 6
-vframes = 3
+vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=96539627]
 position = Vector2(0, -2)

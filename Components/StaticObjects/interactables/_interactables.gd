@@ -13,7 +13,7 @@ func _ready() -> void:
 func trigger_dialogue():
 	if not dialogue.is_empty():
 		player.state_machine.change_state("playerdialogue")
-		var dm =  preload("uid://b2tmm2aequm2a").instantiate()
-		dm.dialogue = dialogue
+		var dlg =  preload("uid://b2tmm2aequm2a").instantiate()
+		dlg.dialogue = dialogue
 		
-		add_child(dm)
+		add_child(dlg)

@@ -20,6 +20,12 @@ func _ready() -> void:
 	button_container.visible = false
 
 func _process(delta: float) -> void:
+	if current_dialogue_item >= dialogue.size():
+		player.state_machine.change_state("playeridle")
+		
+		queue_free()
+		return
+	
 	if next_item:
 		next_item = false
 		var i = dialogue[current_dialogue_item]
@@ -53,13 +59,29 @@ func _choice_resource(i: DialogueChoice):
 func _text_resource(i: DialogueText):
 	if not i.speaker_anim:
 		speaker_parent.visible = false
+		speaker_name.visible = false
+		dialogue_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	else:
 		speaker_name.text = i.speaker_name
 		speaker_anim.play(i.speaker_anim)
 		
 	reveal_dialogue(i.text, i.text_speed)
-
-
+	
+	while true:
+		await get_tree().process_frame
+		if dialogue_label.visible_ratio == 1:
+			#var timer = Timer.new()
+			#add_child(timer)
+			#
+			#timer.start(1)
+			#timer.connect("timeout", indicator.show)
+			
+			indicator.show()
+			if Input.is_action_just_pressed("_interact"):
+				#timer.queue_free()
+				indicator.hide()
+				current_dialogue_item += 1
+				next_item = true
 
 func reveal_dialogue(text: String, speed: float):
 	dialogue_label.visible_ratio = 0

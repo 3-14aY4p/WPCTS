@@ -5,11 +5,10 @@
 [ext_resource type="Script" uid="uid://ccp23jdfv4mhp" path="res://Components/CameraManager/camera_manager.gd" id="1_sd2qi"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_qsylf"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_sd2qi"]
-[ext_resource type="PackedScene" uid="uid://d0kyujlab25db" path="res://Components/StaticObjects/bed.tscn" id="5_grixu"]
-[ext_resource type="PackedScene" uid="uid://d00j6hrwxh0m4" path="res://Components/StaticObjects/study_table.tscn" id="6_24t0w"]
-[ext_resource type="PackedScene" uid="uid://cka4vs4ia2m20" path="res://Components/Objects/object.tscn" id="6_47re4"]
+[ext_resource type="PackedScene" uid="uid://d0kyujlab25db" path="res://Components/StaticObjects/interactables/bed.tscn" id="5_grixu"]
+[ext_resource type="PackedScene" uid="uid://d00j6hrwxh0m4" path="res://Components/StaticObjects/interactables/study_table.tscn" id="6_24t0w"]
 [ext_resource type="Script" uid="uid://g3o3sjnstt0y" path="res://Components/DialogueSystem/resource/DialogueExport.gd" id="7_11qk6"]
-[ext_resource type="PackedScene" uid="uid://kvu5qafjiwcw" path="res://Components/StaticObjects/small_bookshelf.tscn" id="7_uhyii"]
+[ext_resource type="PackedScene" uid="uid://kvu5qafjiwcw" path="res://Components/StaticObjects/interactables/small_bookshelf.tscn" id="7_uhyii"]
 [ext_resource type="Script" uid="uid://bpllf8u1dqqr0" path="res://Components/DialogueSystem/resource/DialogueText.gd" id="8_7rwsm"]
 
 [sub_resource type="Resource" id="Resource_7rwsm"]
@@ -20,7 +19,11 @@ script = ExtResource("8_7rwsm")
 speaker_name = "colin"
 speaker_anim = "mc_neutral"
 text = "you're sleeping? in this economy?"
-text_speed = 0.5
+metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
+
+[sub_resource type="Resource" id="Resource_kawv0"]
+script = ExtResource("8_7rwsm")
+text = "that sounds outrageous... "
 metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
 
 [node name="DormRoom" type="Node2D" unique_id=452890962]
@@ -36,7 +39,6 @@ top_level = true
 script = ExtResource("3_qsylf")
 follow_mode = 1
 zoom = Vector2(1.5, 1.5)
-snap_to_pixel = true
 tween_resource = SubResource("Resource_7rwsm")
 tween_on_load = false
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
@@ -60,7 +62,7 @@ y_sort_enabled = true
 
 [node name="Bed" parent="StaticObjects" unique_id=777938724 instance=ExtResource("5_grixu")]
 position = Vector2(141, 133)
-dialogue = Array[ExtResource("7_11qk6")]([SubResource("Resource_11qk6")])
+dialogue = Array[ExtResource("7_11qk6")]([SubResource("Resource_11qk6"), SubResource("Resource_kawv0")])
 
 [node name="StudyTable" parent="StaticObjects" unique_id=952759821 instance=ExtResource("6_24t0w")]
 position = Vector2(181, 89)
@@ -71,12 +73,6 @@ position = Vector2(201, 86)
 
 [node name="Objects" type="Node2D" parent="." unique_id=1686050512]
 y_sort_enabled = true
-
-[node name="Object" parent="Objects" unique_id=25186628 instance=ExtResource("6_47re4")]
-position = Vector2(148, 111)
-
-[node name="Object2" parent="Objects" unique_id=1944296550 instance=ExtResource("6_47re4")]
-position = Vector2(136, 97)
 
 [node name="Player" parent="." unique_id=1050916810 instance=ExtResource("1_fcyx1")]
 position = Vector2(197, 123)
