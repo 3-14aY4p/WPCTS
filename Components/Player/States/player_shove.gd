@@ -24,7 +24,7 @@ func physics_update(delta: float):
 		
 		var c = player.aim_ray_cast.get_collider()
 		if c is Objects and player.aim_ray_cast.is_colliding():
-			c.apply_central_impulse(-player.mouse_dir * player.shove_meter.value)
+			c.apply_central_impulse(player.mouse_dir * (player.shove_meter.value * 3))
 			
 		#kb._run_knockback_timer(player)
 		#kb._apply_knockback(player.mouse_dir, -1000, 1)
