@@ -5,7 +5,7 @@ class_name Player extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var shove_meter: ProgressBar = $MiniHUD/ShoveMeter
+@onready var force_meter: ProgressBar = $MiniHUD/ForceMeter
 
 @onready var aim_ray_cast: RayCast2D = $PlayerAim/AimRayCast
 @onready var aim_direction: Marker2D = $PlayerAim/AimRayCast/AimDirection
@@ -14,7 +14,7 @@ class_name Player extends CharacterBody2D
 
 @export var default_speed = 60
 
-var can_pick: bool = true
+var grabbed_obj = null
 var mouse_dir: Vector2
 
 
@@ -30,7 +30,6 @@ func _handle_sprt_dir(isAiming: bool = false):
 	if isAiming:
 		if mouse_dir.x < 0:
 			sprite_2d.flip_h = true
-			
 		elif mouse_dir.x > 0:
 			sprite_2d.flip_h = false
 	else:
@@ -39,3 +38,8 @@ func _handle_sprt_dir(isAiming: bool = false):
 			
 		elif velocity.x > 0:
 			sprite_2d.flip_h = false
+
+func _handle_raycast_collision():
+	var c = aim_ray_cast.get_collider()
+	if c is Objects and aim_ray_cast.is_colliding():
+		return c

@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://qv66b1w44rlh" path="res://Components/Objects/_object.gd" id="1_yegyu"]
 [ext_resource type="Texture2D" uid="uid://bqd70ycen1mdb" path="res://Assets/art/objects.png" id="2_yyp0r"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2qvje"]
+friction = 0.45
+bounce = 0.3
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h37a2"]
 size = Vector2(10, 4)
 
@@ -10,6 +14,7 @@ size = Vector2(10, 4)
 z_index = 1
 collision_layer = 2
 collision_mask = 15
+physics_material_override = SubResource("PhysicsMaterial_2qvje")
 lock_rotation = true
 linear_damp_mode = 1
 linear_damp = 3.0

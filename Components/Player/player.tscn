@@ -8,7 +8,9 @@
 [ext_resource type="Script" uid="uid://davqupyjmtqu7" path="res://Components/Player/States/player_walk.gd" id="4_dcc5r"]
 [ext_resource type="Script" uid="uid://c6wkqtusrm5kg" path="res://Components/Player/States/player_shove.gd" id="5_pc5nc"]
 [ext_resource type="Script" uid="uid://cwvgey1trwr3f" path="res://Components/Player/States/player_dialogue.gd" id="6_kndqg"]
+[ext_resource type="Script" uid="uid://cbxghay4c00dr" path="res://Components/Player/States/player_pull.gd" id="8_l83wq"]
 [ext_resource type="Script" uid="uid://dw4d21gp0jvra" path="res://Components/EntityComponent/KnockbackComponent.gd" id="9_lakyf"]
+[ext_resource type="Script" uid="uid://f5024xbvur4l" path="res://Components/Player/States/player_carry.gd" id="9_wh2kk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcc5r"]
 bg_color = Color(0.20784314, 0.23921569, 0.27450982, 1)
@@ -44,6 +46,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/CarryPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -14)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1yt0s"]
 _data = {
@@ -52,6 +66,35 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_l83wq"]
 resource_name = "carry"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [18, 19, 20, 21]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/CarryPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -13), Vector2(0, -12), Vector2(0, -12), Vector2(0, -15)]
+}
+
+[sub_resource type="Animation" id="Animation_wh2kk"]
+resource_name = "carry_walk"
 length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
@@ -61,10 +104,22 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [18, 19, 20, 21]
+"update": 1,
+"values": [25, 24, 27, 26]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/CarryPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -15), Vector2(0, -14), Vector2(0, -15), Vector2(0, -14)]
 }
 
 [sub_resource type="Animation" id="Animation_dcc5r"]
@@ -79,8 +134,20 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/CarryPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -14), Vector2(0, -13), Vector2(0, -13), Vector2(0, -15)]
 }
 
 [sub_resource type="Animation" id="Animation_pc5nc"]
@@ -95,7 +162,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.13333334),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [12, 13, 14]
 }
 
@@ -111,8 +178,52 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.13333334),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_4bli6"]
+resource_name = "throw_charge"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [30, 31, 32]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/CarryPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -15), Vector2(0, -16), Vector2(0, -15)]
+}
+
+[sub_resource type="Animation" id="Animation_3nu2b"]
+resource_name = "throw_release"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [33, 34, 35]
 }
 
 [sub_resource type="Animation" id="Animation_kndqg"]
@@ -127,16 +238,19 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [6, 7, 8, 9]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lakyf"]
 _data = {
-&"carry": SubResource("Animation_l83wq"),
+&"carry_idle": SubResource("Animation_l83wq"),
+&"carry_walk": SubResource("Animation_wh2kk"),
 &"idle": SubResource("Animation_dcc5r"),
 &"shove_charge": SubResource("Animation_pc5nc"),
 &"shove_release": SubResource("Animation_1yt0s"),
+&"throw_charge": SubResource("Animation_4bli6"),
+&"throw_release": SubResource("Animation_3nu2b"),
 &"walk": SubResource("Animation_kndqg")
 }
 
@@ -154,7 +268,7 @@ offset_top = -32.0
 offset_right = 16.0
 offset_bottom = -16.0
 
-[node name="ShoveMeter" type="ProgressBar" parent="MiniHUD" unique_id=1811352395]
+[node name="ForceMeter" type="ProgressBar" parent="MiniHUD" unique_id=1811352395]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -199,12 +313,20 @@ metadata/_custom_type_script = "uid://c6wkqtusrm5kg"
 script = ExtResource("6_kndqg")
 metadata/_custom_type_script = "uid://cwvgey1trwr3f"
 
+[node name="PlayerPull" type="Node" parent="StateMachine" unique_id=1859503614]
+script = ExtResource("8_l83wq")
+metadata/_custom_type_script = "uid://cbxghay4c00dr"
+
+[node name="PlayerCarry" type="Node" parent="StateMachine" unique_id=1488738968]
+script = ExtResource("9_wh2kk")
+metadata/_custom_type_script = "uid://f5024xbvur4l"
+
 [node name="PlayerAim" type="Node2D" parent="." unique_id=840922595]
 
 [node name="AimRayCast" type="RayCast2D" parent="PlayerAim" unique_id=1486633690]
 position = Vector2(0, -2)
 target_position = Vector2(10, 0)
-collision_mask = 6
+collision_mask = 7
 
 [node name="AimDirection" type="Marker2D" parent="PlayerAim/AimRayCast" unique_id=750125203]
 position = Vector2(8, 0)
@@ -213,10 +335,10 @@ position = Vector2(8, 0)
 texture = ExtResource("2_1xasy")
 offset = Vector2(0, -8)
 hframes = 6
-vframes = 4
+vframes = 6
 
 [node name="CarryPosition" type="Marker2D" parent="Sprite2D" unique_id=1481889394]
-position = Vector2(0, -15)
+position = Vector2(0, -14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=96539627]
 position = Vector2(0, -2)

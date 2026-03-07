@@ -3,6 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://vladrj6r2skm" path="res://Components/InteractionModule/interaction_area.tscn" id="1_1dtym"]
 [ext_resource type="Script" uid="uid://mxvnstfisiwa" path="res://Components/StaticObjects/interactables/small_bookshelf.gd" id="1_8o7u3"]
 [ext_resource type="Texture2D" uid="uid://c4gb70iui3j7n" path="res://Assets/art/staticObjects.png" id="1_uf7ak"]
+[ext_resource type="Script" uid="uid://g3o3sjnstt0y" path="res://Components/DialogueSystem/resource/DialogueExport.gd" id="2_ep8bc"]
+[ext_resource type="Script" uid="uid://bpllf8u1dqqr0" path="res://Components/DialogueSystem/resource/DialogueText.gd" id="3_01ttw"]
+
+[sub_resource type="Resource" id="Resource_q6h6h"]
+script = ExtResource("3_01ttw")
+text = "I can't believe you want to review."
+metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8o7u3"]
 size = Vector2(14, 7)
@@ -10,8 +17,9 @@ size = Vector2(14, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uf7ak"]
 size = Vector2(12, 5)
 
-[node name="SmallBookshelf" type="StaticBody2D" unique_id=552261382]
+[node name="SmallBookshelf" type="StaticBody2D" unique_id=552261382 groups=["interactables"]]
 script = ExtResource("1_8o7u3")
+dialogue = Array[ExtResource("2_ep8bc")]([SubResource("Resource_q6h6h")])
 
 [node name="InteractionArea" parent="." unique_id=1730564579 instance=ExtResource("1_1dtym")]
 z_index = 1

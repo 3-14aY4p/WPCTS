@@ -18,3 +18,12 @@ func physics_update(delta: float):
 func handle_input(event: InputEvent):
 	if Input.is_action_just_pressed("_shove"):
 		state_machine.change_state("playershove")
+		
+	elif Input.is_action_just_pressed("_grab"):
+		var obj = player._handle_raycast_collision()
+		if obj:
+			if obj.is_in_group("pickable"):
+				player.grabbed_obj = obj
+				state_machine.change_state("playercarry")
+			else:
+				state_machine.change_state("playerpull")

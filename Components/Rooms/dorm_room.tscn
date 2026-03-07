@@ -7,9 +7,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_sd2qi"]
 [ext_resource type="PackedScene" uid="uid://d0kyujlab25db" path="res://Components/StaticObjects/interactables/bed.tscn" id="5_grixu"]
 [ext_resource type="PackedScene" uid="uid://d00j6hrwxh0m4" path="res://Components/StaticObjects/interactables/study_table.tscn" id="6_24t0w"]
-[ext_resource type="Script" uid="uid://g3o3sjnstt0y" path="res://Components/DialogueSystem/resource/DialogueExport.gd" id="7_11qk6"]
 [ext_resource type="PackedScene" uid="uid://kvu5qafjiwcw" path="res://Components/StaticObjects/interactables/small_bookshelf.tscn" id="7_uhyii"]
-[ext_resource type="Script" uid="uid://bpllf8u1dqqr0" path="res://Components/DialogueSystem/resource/DialogueText.gd" id="8_7rwsm"]
 [ext_resource type="PackedScene" uid="uid://odnfek7pfsa4" path="res://Components/Objects/boxes/medium_box.tscn" id="10_kawv0"]
 [ext_resource type="Script" uid="uid://4u4srr8ec6wj" path="res://Components/Objects/res/ObjectData.gd" id="11_0byin"]
 [ext_resource type="PackedScene" uid="uid://cwjjibtb4meo6" path="res://Components/Objects/boxes/large_box.tscn" id="11_f0b02"]
@@ -17,18 +15,6 @@
 
 [sub_resource type="Resource" id="Resource_7rwsm"]
 script = ExtResource("4_sd2qi")
-
-[sub_resource type="Resource" id="Resource_11qk6"]
-script = ExtResource("8_7rwsm")
-speaker_name = "colin"
-speaker_anim = "mc_neutral"
-text = "you're sleeping? in this economy?"
-metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
-
-[sub_resource type="Resource" id="Resource_kawv0"]
-script = ExtResource("8_7rwsm")
-text = "that sounds outrageous... "
-metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
 
 [sub_resource type="Resource" id="Resource_fclya"]
 script = ExtResource("11_0byin")
@@ -81,7 +67,6 @@ y_sort_enabled = true
 
 [node name="Bed" parent="StaticObjects" unique_id=777938724 instance=ExtResource("5_grixu")]
 position = Vector2(141, 133)
-dialogue = Array[ExtResource("7_11qk6")]([SubResource("Resource_11qk6"), SubResource("Resource_kawv0")])
 
 [node name="StudyTable" parent="StaticObjects" unique_id=952759821 instance=ExtResource("6_24t0w")]
 position = Vector2(181, 89)
@@ -90,7 +75,7 @@ position = Vector2(181, 89)
 z_index = 1
 position = Vector2(201, 86)
 
-[node name="Objects" type="Node2D" parent="." unique_id=1686050512]
+[node name="Objects" type="Node2D" parent="." unique_id=1686050512 groups=["container"]]
 y_sort_enabled = true
 
 [node name="SmallBox" parent="Objects" unique_id=25186628 instance=ExtResource("12_0byin")]

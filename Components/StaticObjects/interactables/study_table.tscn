@@ -3,6 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://vladrj6r2skm" path="res://Components/InteractionModule/interaction_area.tscn" id="1_3ad4n"]
 [ext_resource type="Texture2D" uid="uid://c4gb70iui3j7n" path="res://Assets/art/staticObjects.png" id="1_8sjac"]
 [ext_resource type="Script" uid="uid://dujvrvg52kw5b" path="res://Components/StaticObjects/interactables/study_table.gd" id="1_x6wqy"]
+[ext_resource type="Script" uid="uid://g3o3sjnstt0y" path="res://Components/DialogueSystem/resource/DialogueExport.gd" id="2_uvbyn"]
+[ext_resource type="Script" uid="uid://bpllf8u1dqqr0" path="res://Components/DialogueSystem/resource/DialogueText.gd" id="3_7qlkk"]
+
+[sub_resource type="Resource" id="Resource_7u02x"]
+script = ExtResource("3_7qlkk")
+text = "You want to study?"
+metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
+
+[sub_resource type="Resource" id="Resource_uvbyn"]
+script = ExtResource("3_7qlkk")
+text = "That's new..."
+metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6wqy"]
 size = Vector2(28, 15)
@@ -10,9 +22,10 @@ size = Vector2(28, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8sjac"]
 size = Vector2(26, 10)
 
-[node name="StudyTable" type="StaticBody2D" unique_id=952759821]
+[node name="StudyTable" type="StaticBody2D" unique_id=952759821 groups=["interactables"]]
 z_index = 1
 script = ExtResource("1_x6wqy")
+dialogue = Array[ExtResource("2_uvbyn")]([SubResource("Resource_7u02x"), SubResource("Resource_uvbyn")])
 
 [node name="InteractionArea" parent="." unique_id=1730564579 instance=ExtResource("1_3ad4n")]
 action_hint = "[ E ] study"

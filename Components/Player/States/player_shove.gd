@@ -7,24 +7,23 @@ var player: Player
 
 func enter():
 	player = state_machine.get_parent()
-	player.shove_meter.show()
 	player.set_collision_layer_value(4, false)
 	
 	InteractionManager.can_interact = false
-	
+	player.force_meter.show()
 	player.animation_player.play("player/shove_charge")
 
 func physics_update(delta: float):
 	player._handle_sprt_dir(true)
-	player.shove_meter.value += 1
+	player.force_meter.value += 1
 
 	if Input.is_action_just_released("_shove"):
 		player.animation_player.play("player/shove_release")
-		player.shove_meter.hide()
+		player.force_meter.hide()
 		
-		var c = player.aim_ray_cast.get_collider()
-		if c is Objects and player.aim_ray_cast.is_colliding():
-			c.apply_central_impulse(player.mouse_dir * (player.shove_meter.value * 3))
+		var collided_obj = player._handle_raycast_collision()
+		if collided_obj:
+			collided_obj.apply_central_impulse(player.mouse_dir * (player.force_meter.value * 3))
 			
 		#kb._run_knockback_timer(player)
 		#kb._apply_knockback(player.mouse_dir, -1000, 1)
@@ -32,7 +31,7 @@ func physics_update(delta: float):
 		#player.move_and_slide()
 			
 		player.set_collision_layer_value(4, true)
-		player.shove_meter.value = 0
+		player.force_meter.value = 0
 		
 		await player.animation_player.animation_finished
 		InteractionManager.can_interact = true

@@ -3,6 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://vladrj6r2skm" path="res://Components/InteractionModule/interaction_area.tscn" id="1_55i3k"]
 [ext_resource type="Script" uid="uid://cff7xpk757orj" path="res://Components/StaticObjects/interactables/bed.gd" id="1_dujuo"]
 [ext_resource type="Texture2D" uid="uid://c4gb70iui3j7n" path="res://Assets/art/staticObjects.png" id="1_x5lqc"]
+[ext_resource type="Script" uid="uid://g3o3sjnstt0y" path="res://Components/DialogueSystem/resource/DialogueExport.gd" id="2_crl2t"]
+[ext_resource type="Script" uid="uid://bpllf8u1dqqr0" path="res://Components/DialogueSystem/resource/DialogueText.gd" id="3_h4o3h"]
+
+[sub_resource type="Resource" id="Resource_0c3fq"]
+script = ExtResource("3_h4o3h")
+speaker_name = "Colin"
+speaker_anim = "mc_neutral"
+text = "I'm a little sleepy."
+metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7jtd"]
 size = Vector2(30, 17)
@@ -14,6 +23,7 @@ size = Vector2(28, 12)
 z_index = 1
 collision_mask = 0
 script = ExtResource("1_dujuo")
+dialogue = Array[ExtResource("2_crl2t")]([SubResource("Resource_0c3fq")])
 
 [node name="InteractionArea" parent="." unique_id=1730564579 instance=ExtResource("1_55i3k")]
 action_hint = "[ E ] sleep"
