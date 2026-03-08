@@ -8,6 +8,9 @@ class_name Interactables extends Node
 
 
 func _ready() -> void:
+	await get_tree().process_frame
+	player = get_tree().get_first_node_in_group("player")
+	
 	interaction_area.interact = Callable(self, "_on_interact")
 
 func trigger_dialogue():

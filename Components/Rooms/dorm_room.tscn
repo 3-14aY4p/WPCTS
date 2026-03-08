@@ -1,20 +1,25 @@
 [gd_scene format=4 uid="uid://bdo4dioigr6ea"]
 
-[ext_resource type="PackedScene" uid="uid://cnlfarynwyvu4" path="res://Components/Player/player.tscn" id="1_fcyx1"]
 [ext_resource type="PackedScene" uid="uid://cdovv3a0tvpat" path="res://Components/TileMaps/tile_maps.tscn" id="1_ms35c"]
 [ext_resource type="Script" uid="uid://ccp23jdfv4mhp" path="res://Components/CameraManager/camera_manager.gd" id="1_sd2qi"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_qsylf"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_sd2qi"]
 [ext_resource type="PackedScene" uid="uid://d0kyujlab25db" path="res://Components/StaticObjects/interactables/bed.tscn" id="5_grixu"]
+[ext_resource type="PackedScene" uid="uid://bua4khv7bd5h2" path="res://Components/ExitPoints/exit_point.tscn" id="5_kawv0"]
+[ext_resource type="Script" uid="uid://g3o3sjnstt0y" path="res://Components/DialogueSystem/resource/DialogueExport.gd" id="6_0byin"]
 [ext_resource type="PackedScene" uid="uid://d00j6hrwxh0m4" path="res://Components/StaticObjects/interactables/study_table.tscn" id="6_24t0w"]
+[ext_resource type="Script" uid="uid://bpllf8u1dqqr0" path="res://Components/DialogueSystem/resource/DialogueText.gd" id="7_fclya"]
 [ext_resource type="PackedScene" uid="uid://kvu5qafjiwcw" path="res://Components/StaticObjects/interactables/small_bookshelf.tscn" id="7_uhyii"]
 [ext_resource type="PackedScene" uid="uid://odnfek7pfsa4" path="res://Components/Objects/boxes/medium_box.tscn" id="10_kawv0"]
 [ext_resource type="Script" uid="uid://4u4srr8ec6wj" path="res://Components/Objects/res/ObjectData.gd" id="11_0byin"]
 [ext_resource type="PackedScene" uid="uid://cwjjibtb4meo6" path="res://Components/Objects/boxes/large_box.tscn" id="11_f0b02"]
 [ext_resource type="PackedScene" uid="uid://4ermala1oh38" path="res://Components/Objects/boxes/small_box.tscn" id="12_0byin"]
+[ext_resource type="PackedScene" uid="uid://dj1ddq5ar23km" path="res://Components/ExitPoints/entry_point.tscn" id="13_f0b02"]
 
-[sub_resource type="Resource" id="Resource_7rwsm"]
+[sub_resource type="Resource" id="Resource_gs4ci"]
 script = ExtResource("4_sd2qi")
+duration = 0.0
+metadata/_custom_type_script = "uid://8umksf8e80fw"
 
 [sub_resource type="Resource" id="Resource_fclya"]
 script = ExtResource("11_0byin")
@@ -23,28 +28,37 @@ metadata/_custom_type_script = "uid://4u4srr8ec6wj"
 
 [sub_resource type="Resource" id="Resource_y07fx"]
 script = ExtResource("11_0byin")
-object_mass = 9.0
+object_mass = 10.0
 metadata/_custom_type_script = "uid://4u4srr8ec6wj"
 
 [sub_resource type="Resource" id="Resource_kchg6"]
 script = ExtResource("11_0byin")
-object_mass = 14.0
+object_mass = 12.0
 metadata/_custom_type_script = "uid://4u4srr8ec6wj"
+
+[sub_resource type="Resource" id="Resource_0byin"]
+script = ExtResource("7_fclya")
+text = "the door is locked."
+metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0byin"]
+size = Vector2(12, 2)
 
 [node name="DormRoom" type="Node2D" unique_id=452890962]
 y_sort_enabled = true
 
-[node name="CameraManager" type="Node" parent="." unique_id=758248049 node_paths=PackedStringArray("cameras")]
+[node name="CameraManager" type="Node" parent="." unique_id=1216281216 node_paths=PackedStringArray("cameras")]
 script = ExtResource("1_sd2qi")
 cameras = [NodePath("PhantomCamera2D")]
 metadata/_custom_type_script = "uid://ccp23jdfv4mhp"
 
-[node name="PhantomCamera2D" type="Node2D" parent="CameraManager" unique_id=704740853]
+[node name="PhantomCamera2D" type="Node2D" parent="CameraManager" unique_id=1992873469]
 top_level = true
+position = Vector2(169, 97)
 script = ExtResource("3_qsylf")
-follow_mode = 1
-zoom = Vector2(1.5, 1.5)
-tween_resource = SubResource("Resource_7rwsm")
+follow_mode = 2
+zoom = Vector2(1.8, 1.8)
+tween_resource = SubResource("Resource_gs4ci")
 tween_on_load = false
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
@@ -75,22 +89,43 @@ position = Vector2(181, 89)
 z_index = 1
 position = Vector2(201, 86)
 
-[node name="Objects" type="Node2D" parent="." unique_id=1686050512 groups=["container"]]
+[node name="Objects" type="Node2D" parent="." unique_id=1686050512 groups=["obj_container"]]
 y_sort_enabled = true
 
 [node name="SmallBox" parent="Objects" unique_id=25186628 instance=ExtResource("12_0byin")]
-position = Vector2(139, 90)
+position = Vector2(183, 121)
 object_data = SubResource("Resource_fclya")
 
 [node name="MediumBox" parent="Objects" unique_id=1862770047 instance=ExtResource("10_kawv0")]
-position = Vector2(140.2203, 101.06145)
+position = Vector2(195, 127)
 object_data = SubResource("Resource_y07fx")
 
 [node name="LargeBox" parent="Objects" unique_id=1586272923 instance=ExtResource("11_f0b02")]
-position = Vector2(141, 115)
+position = Vector2(199, 119)
 object_data = SubResource("Resource_kchg6")
 
-[node name="Player" parent="." unique_id=1050916810 instance=ExtResource("1_fcyx1")]
-position = Vector2(197, 123)
+[node name="ExitPoints" type="Node2D" parent="." unique_id=1899879650]
+
+[node name="ExitPoint" parent="ExitPoints" unique_id=510584444 instance=ExtResource("5_kawv0")]
+position = Vector2(152, 81)
+point_id = "d2dh"
+scene_uid = "uid://bjlu2fvcl2hrn"
+dialogue = Array[ExtResource("6_0byin")]([SubResource("Resource_0byin")])
+
+[node name="InteractionArea" parent="ExitPoints/ExitPoint" index="0" unique_id=1730564579]
+action_hint = "[ E ] hallway"
+
+[node name="CollisionShape2D" parent="ExitPoints/ExitPoint/InteractionArea" index="0" unique_id=528310991]
+shape = SubResource("RectangleShape2D_0byin")
+
+[node name="EntryPoints" type="Node2D" parent="." unique_id=860928522]
+
+[node name="EntryPoint_SPAWN" parent="EntryPoints" unique_id=1827108011 instance=ExtResource("13_f0b02")]
+position = Vector2(152, 114)
+
+[node name="EntryPoint" parent="EntryPoints" unique_id=654582156 instance=ExtResource("13_f0b02")]
+position = Vector2(152, 89)
+point_id = "dh2d"
 
 [editable path="TileMaps"]
+[editable path="ExitPoints/ExitPoint"]

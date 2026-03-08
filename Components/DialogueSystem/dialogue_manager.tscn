@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://u0vg8vug2jvi" path="res://Assets/art/portraits/mc_neutral.png" id="2_t1613"]
 [ext_resource type="Texture2D" uid="uid://qfyuff61b341" path="res://Assets/art/portraits/temp_neutral.png" id="3_vmmjh"]
 [ext_resource type="FontFile" uid="uid://bthadkgdkntt8" path="res://Assets/font/superstar_memesbruh03.ttf" id="4_sdixd"]
+[ext_resource type="Texture2D" uid="uid://bum1epxx7l543" path="res://Assets/art/portraits/dm_neutral.png" id="5_6saq7"]
+[ext_resource type="Texture2D" uid="uid://dsfqivn5i32ve" path="res://Assets/art/portraits/pf_neutral.png" id="6_c0w7q"]
+[ext_resource type="Texture2D" uid="uid://dndjj13xpa2u5" path="res://Assets/art/portraits/rm_neutral.png" id="6_rspex"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4s6j"]
 atlas = ExtResource("1_tra1r")
@@ -60,6 +63,22 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_vmmjh")
+}],
+"loop": true,
+"name": &"_temp_neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6saq7")
+}],
+"loop": true,
+"name": &"dm_neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_t1613")
 }],
 "loop": true,
@@ -68,10 +87,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_vmmjh")
+"texture": ExtResource("6_c0w7q")
 }],
 "loop": true,
-"name": &"temp_neutral",
+"name": &"pf_neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_rspex")
+}],
+"loop": true,
+"name": &"rm_neutral",
 "speed": 5.0
 }]
 
@@ -156,7 +183,7 @@ layout_mode = 2
 position = Vector2(32, 6)
 scale = Vector2(1.9999999, 1.9999999)
 sprite_frames = SubResource("SpriteFrames_vmmjh")
-animation = &"temp_neutral"
+animation = &"_temp_neutral"
 
 [node name="TextBox" type="VBoxContainer" parent="CanvasLayer/HBoxContainer" unique_id=533653048]
 custom_minimum_size = Vector2(200, 56)

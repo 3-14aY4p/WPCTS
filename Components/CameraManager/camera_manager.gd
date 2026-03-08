@@ -12,6 +12,9 @@ var current_camera_zone : int = 0
 
 # CAMERA LIMITS
 func _ready() -> void:
+	await get_tree().process_frame
+	player = get_tree().get_first_node_in_group("player")
+	
 	cameras[0].limit_target = get_tree().get_first_node_in_group("bounds").get_path()
 	cameras[0].follow_target = player
 

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bxmwsl0ho2v2r"]
+
+[ext_resource type="PackedScene" uid="uid://vladrj6r2skm" path="res://Components/InteractionModule/interaction_area.tscn" id="1_a3qme"]
+[ext_resource type="Script" uid="uid://c1wnatw3tvgc8" path="res://Components/StaticObjects/inspection_point.gd" id="1_mtjxk"]
+
+[node name="InspectionPoint" type="Node2D" unique_id=956481942]
+script = ExtResource("1_mtjxk")
+
+[node name="InteractionArea" parent="." unique_id=1730564579 instance=ExtResource("1_a3qme")]
+action_hint = "[ E ] inspect"
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

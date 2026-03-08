@@ -8,7 +8,7 @@ func enter():
 	player = state_machine.get_parent()
 
 func physics_update(delta: float):
-	player._handle_sprt_dir()
+	player.handle_sprt_dir()
 	player.animation_player.play("player/idle")
 
 func handle_input(event: InputEvent):
@@ -19,11 +19,8 @@ func handle_input(event: InputEvent):
 		state_machine.change_state("playershove")
 		
 	elif Input.is_action_just_pressed("_grab"):
-		var obj = player._handle_raycast_collision()
+		var obj = player.handle_raycast_collision()
 		if obj:
+			player.grabbed_obj = obj
 			if obj.is_in_group("pickable"):
-				player.grabbed_obj = obj
 				state_machine.change_state("playercarry")
-			else:
-				state_machine.change_state("PlayerPull")
-			

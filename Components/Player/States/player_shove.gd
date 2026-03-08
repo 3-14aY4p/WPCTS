@@ -14,16 +14,16 @@ func enter():
 	player.animation_player.play("player/shove_charge")
 
 func physics_update(delta: float):
-	player._handle_sprt_dir(true)
+	player.handle_sprt_dir(true)
 	player.force_meter.value += 1
 
 	if Input.is_action_just_released("_shove"):
 		player.animation_player.play("player/shove_release")
 		player.force_meter.hide()
 		
-		var collided_obj = player._handle_raycast_collision()
-		if collided_obj:
-			collided_obj.apply_central_impulse(player.mouse_dir * (player.force_meter.value * 3))
+		var collided_obj = player.handle_raycast_collision()
+		if collided_obj and collided_obj.is_in_group("shoveable"):
+			collided_obj.apply_central_impulse(player.mouse_dir * (player.force_meter.value * 4))
 			
 		#kb._run_knockback_timer(player)
 		#kb._apply_knockback(player.mouse_dir, -1000, 1)

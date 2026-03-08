@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://davqupyjmtqu7" path="res://Components/Player/States/player_walk.gd" id="4_dcc5r"]
 [ext_resource type="Script" uid="uid://c6wkqtusrm5kg" path="res://Components/Player/States/player_shove.gd" id="5_pc5nc"]
 [ext_resource type="Script" uid="uid://cwvgey1trwr3f" path="res://Components/Player/States/player_dialogue.gd" id="6_kndqg"]
-[ext_resource type="Script" uid="uid://cbxghay4c00dr" path="res://Components/Player/States/player_pull.gd" id="8_l83wq"]
 [ext_resource type="Script" uid="uid://dw4d21gp0jvra" path="res://Components/EntityComponent/KnockbackComponent.gd" id="9_lakyf"]
 [ext_resource type="Script" uid="uid://f5024xbvur4l" path="res://Components/Player/States/player_carry.gd" id="9_wh2kk"]
 
@@ -261,6 +260,7 @@ collision_mask = 7
 script = ExtResource("1_7iwu5")
 
 [node name="MiniHUD" type="Control" parent="." unique_id=369656953]
+z_index = 49
 layout_mode = 3
 anchors_preset = 0
 offset_left = -16.0
@@ -313,10 +313,6 @@ metadata/_custom_type_script = "uid://c6wkqtusrm5kg"
 script = ExtResource("6_kndqg")
 metadata/_custom_type_script = "uid://cwvgey1trwr3f"
 
-[node name="PlayerPull" type="Node" parent="StateMachine" unique_id=1859503614]
-script = ExtResource("8_l83wq")
-metadata/_custom_type_script = "uid://cbxghay4c00dr"
-
 [node name="PlayerCarry" type="Node" parent="StateMachine" unique_id=1488738968]
 script = ExtResource("9_wh2kk")
 metadata/_custom_type_script = "uid://f5024xbvur4l"
@@ -335,7 +331,7 @@ position = Vector2(8, 0)
 texture = ExtResource("2_1xasy")
 offset = Vector2(0, -8)
 hframes = 6
-vframes = 6
+vframes = 8
 
 [node name="CarryPosition" type="Marker2D" parent="Sprite2D" unique_id=1481889394]
 position = Vector2(0, -14)
@@ -345,7 +341,9 @@ position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_1xasy")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1054868773]
+physics_interpolation_mode = 1
 top_level = true
+process_callback = 0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=584287184]
 process_priority = 300

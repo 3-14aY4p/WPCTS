@@ -10,7 +10,7 @@
 script = ExtResource("3_h4o3h")
 speaker_name = "Colin"
 speaker_anim = "mc_neutral"
-text = "I'm a little sleepy."
+text = "time to hit the sack..."
 metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7jtd"]

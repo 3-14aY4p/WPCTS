@@ -10,7 +10,7 @@ bounce = 0.3
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h37a2"]
 size = Vector2(10, 4)
 
-[node name="SmallBox" type="RigidBody2D" unique_id=25186628 groups=["objects"]]
+[node name="SmallBox" type="RigidBody2D" unique_id=25186628 groups=["objects", "shoveable"]]
 z_index = 1
 collision_layer = 2
 collision_mask = 15

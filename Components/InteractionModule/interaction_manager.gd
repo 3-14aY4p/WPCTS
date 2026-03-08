@@ -12,6 +12,10 @@ var active_areas: Array[Area2D] = []
 var can_interact: = true
 
 
+func _ready() -> void:
+	await get_tree().process_frame
+	player = get_tree().get_first_node_in_group("player")
+	
 func register_area(area: InteractionArea):
 	active_areas.push_back(area)
 

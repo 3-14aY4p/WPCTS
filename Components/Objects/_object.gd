@@ -8,13 +8,10 @@ func _ready() -> void:
 	if object_data:
 		mass = object_data.object_mass
 		
-		if object_data.material:
-			physics_material_override.set_physics_material_override(object_data.material)
-		
 		if object_data.damp_mode == "Combine":
 			linear_damp_mode = RigidBody2D.DAMP_MODE_COMBINE
 		elif object_data.damp_mode == "Replace":
 			linear_damp_mode = RigidBody2D.DAMP_MODE_REPLACE
 			
-	if mass <= 7:
+	if mass <= 10:
 		add_to_group("pickable")

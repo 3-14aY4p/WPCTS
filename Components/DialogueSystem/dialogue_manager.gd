@@ -14,6 +14,8 @@ var dialogue: Array[DE]
 var current_dialogue_item: int = 0
 var next_item: bool = true
 
+var total_char
+
 
 func _ready() -> void:
 	visible = false
@@ -66,10 +68,10 @@ func _text_resource(i: DialogueText):
 		speaker_anim.play(i.speaker_anim)
 		
 	reveal_dialogue(i.text, i.text_speed)
-	
 	while true:
 		await get_tree().process_frame
-		if dialogue_label.visible_ratio == 1:
+		
+		if dialogue_label.visible_characters == total_char:
 			#var timer = Timer.new()
 			#add_child(timer)
 			#
@@ -83,9 +85,45 @@ func _text_resource(i: DialogueText):
 				current_dialogue_item += 1
 				next_item = true
 
+
+
 func reveal_dialogue(text: String, speed: float):
-	dialogue_label.visible_ratio = 0
 	dialogue_label.text = text
+	dialogue_label.visible_characters = 0
 	
-	var tween = create_tween()
-	tween.tween_property(dialogue_label, "visible_ratio", 1, speed)
+	var bbc_text = _text_without_square_brackets(text)
+	total_char = bbc_text.length()
+	
+	var typing_time: float = 0.0
+	
+	while dialogue_label.visible_characters < total_char:
+		if Input.is_action_just_pressed("_skip_dialogue") or speed == 0:
+			dialogue_label.visible_characters = total_char
+			break
+		
+		typing_time += get_process_delta_time()
+		if typing_time >= (1.0/speed) or bbc_text[dialogue_label.visible_characters] == " ":
+			var character: String = bbc_text[dialogue_label.visible_characters]
+			dialogue_label.visible_characters += 1
+		
+		dialogue_label.visible_characters = speed * typing_time as int
+		
+		await get_tree().process_frame
+	
+#[] -> sign of BBCode; we don't want them included in the char visible count
+func _text_without_square_brackets(text: String) -> String:
+	var result: String = ""
+	var inside_bracket: bool = false
+	
+	for i in text:
+		if i == "[":
+			inside_bracket = true
+			continue #continues the for loop, skipping the code below(?)
+		if i == "]":
+			inside_bracket = false
+			continue
+		
+		if !inside_bracket:
+			result += i
+		
+	return result
