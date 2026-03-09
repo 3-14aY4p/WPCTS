@@ -6,6 +6,7 @@ var player: Player
 
 func enter():
 	player = state_machine.get_parent()
+	InteractionManager.can_interact = false
 	
 	player.grabbed_obj.set_collision_layer_value(2, false)
 	player.grabbed_obj.reparent(player.carry_position)
@@ -39,3 +40,6 @@ func handle_input(event: InputEvent):
 	# we already have shove; throw is a bit redundant
 	#elif Input.is_action_just_pressed("_throw"):
 		#state_machine.change_state("playerthrow")
+
+func exit():
+	InteractionManager.can_interact = true

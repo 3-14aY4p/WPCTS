@@ -5,7 +5,7 @@ extends Marker2D
 
 
 func _ready() -> void:
-	if point_id == Global.last_area_id:
+	if point_id == Global.last_exit_id:
 		var player = preload("uid://cnlfarynwyvu4")
 		var player_instance = player.instantiate()
 		get_owner().add_child.call_deferred(player_instance)

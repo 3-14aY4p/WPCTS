@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://7710mcuasn6v"]
+
+[ext_resource type="Texture2D" uid="uid://c4gb70iui3j7n" path="res://Assets/art/staticObjects.png" id="1_dajj0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dajj0"]
+size = Vector2(26, 19)
+
+[node name="LowTable" type="StaticBody2D" unique_id=1193419170]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=464246278]
+texture = ExtResource("1_dajj0")
+offset = Vector2(0, -12)
+region_enabled = true
+region_rect = Rect2(80, 48, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1440720589]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_dajj0")

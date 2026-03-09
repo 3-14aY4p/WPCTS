@@ -56,7 +56,41 @@ func _function_resource(i: DialogueFunction):
 	pass
 
 func _choice_resource(i: DialogueChoice):
-	pass
+	dialogue_label.text = i.text
+	dialogue_label.visible_characters = -1
+	
+	if not i.speaker_anim:
+		speaker_parent.visible = false
+		speaker_name.visible = false
+		dialogue_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	else:
+		speaker_name.text = i.speaker_name
+		speaker_anim.play(i.speaker_anim)
+	button_container.visible = true
+	
+	for item in i.choice_text.size():
+		var dialogue_button = preload("uid://duwv6yl4tc7by")
+		var dialogue_button_instance = dialogue_button.instantiate()
+		dialogue_button_instance.text = i.choice_text[item]
+		
+		var function_resource: DialogueFunction = i.choice_function_call[item]
+		if function_resource:
+			dialogue_button_instance.connect("pressed",
+			Callable(get_node(function_resource.target_path), 
+			(function_resource.function_name)).bindv(function_resource.function_arguments),
+			CONNECT_ONE_SHOT)
+			if function_resource.hide_dialogue_box:
+				dialogue_button_instance.connect("pressed", hide, CONNECT_ONE_SHOT)
+				
+			dialogue_button_instance.connect("pressed",
+			_choice_button_pressed.bind(get_node(function_resource.target_path), 
+			function_resource.wait_for_signal_to_continue),
+			CONNECT_ONE_SHOT)
+		else:
+			dialogue_button_instance.connect("pressed", _choice_button_pressed.bind(null, ""), CONNECT_ONE_SHOT)
+		
+		button_container.add_child(dialogue_button_instance)
+	#button_container.get_child(0).grab_focus()
 
 func _text_resource(i: DialogueText):
 	if not i.speaker_anim:
@@ -87,11 +121,28 @@ func _text_resource(i: DialogueText):
 
 
 
+func _choice_button_pressed(target_node: Node, wait_for_signal_to_continue: String):
+	button_container.visible = false
+	for i in button_container.get_children():
+		i.queue_free()
+	
+	if wait_for_signal_to_continue:
+		var signal_name = wait_for_signal_to_continue
+		if target_node.has_signal(signal_name):
+			var signal_state = {"done": false}
+			var callable = func(_args): signal_state.done = true
+			target_node.connect(signal_name, callable, CONNECT_ONE_SHOT)
+			while not signal_state.done:
+				await get_tree().process_frame
+	
+	current_dialogue_item += 1
+	next_item = true
+
 func reveal_dialogue(text: String, speed: float):
 	dialogue_label.text = text
 	dialogue_label.visible_characters = 0
 	
-	var bbc_text = _text_without_square_brackets(text)
+	var bbc_text = _extract_bbcode(text)
 	total_char = bbc_text.length()
 	
 	var typing_time: float = 0.0
@@ -109,9 +160,9 @@ func reveal_dialogue(text: String, speed: float):
 		dialogue_label.visible_characters = speed * typing_time as int
 		
 		await get_tree().process_frame
-	
+
 #[] -> sign of BBCode; we don't want them included in the char visible count
-func _text_without_square_brackets(text: String) -> String:
+func _extract_bbcode(text: String) -> String:
 	var result: String = ""
 	var inside_bracket: bool = false
 	

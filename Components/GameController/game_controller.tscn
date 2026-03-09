@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://brny4rnqhj6wt"]
 
 [ext_resource type="Script" uid="uid://ob42ngviv40s" path="res://Components/GameController/game_controller.gd" id="1_jbcng"]
-[ext_resource type="PackedScene" uid="uid://bdo4dioigr6ea" path="res://Components/Rooms/dorm_room.tscn" id="2_2tapk"]
+[ext_resource type="PackedScene" uid="uid://bdo4dioigr6ea" path="res://Rooms/dorm_room.tscn" id="2_2tapk"]
 
 [node name="GameController" type="Node" unique_id=670006160 node_paths=PackedStringArray("world_2d", "gui", "current_2d_scene")]
 script = ExtResource("1_jbcng")

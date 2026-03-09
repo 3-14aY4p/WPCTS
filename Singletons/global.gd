@@ -5,4 +5,4 @@ var game_controller: GameController
 
 
 # AREA SWITCHING
-var last_area_id: String 
+var last_exit_id: String 

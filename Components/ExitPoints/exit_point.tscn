@@ -11,5 +11,6 @@ action_hint = "[ E ] exit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=528310991]
 
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

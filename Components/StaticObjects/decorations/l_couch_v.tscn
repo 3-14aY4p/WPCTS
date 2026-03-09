@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bdv8pjk6d2h47"]
+
+[ext_resource type="Texture2D" uid="uid://c4gb70iui3j7n" path="res://Assets/art/staticObjects.png" id="1_76p7j"]
+
+[node name="LCouch_v" type="StaticBody2D" unique_id=917472257]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1100103143]
+texture = ExtResource("1_76p7j")
+offset = Vector2(0, -13)
+region_enabled = true
+region_rect = Rect2(96, 0, 16, 32)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=521776246]
+polygon = PackedVector2Array(4, -21, 4, -17, -1, -17, -1, -8, 4, -8, 4, -2, -7, -2, -7, -21)

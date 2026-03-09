@@ -200,8 +200,6 @@ bbcode_enabled = true
 text = "dialogue label"
 scroll_active = false
 vertical_alignment = 1
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="ButtonContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/TextBox" unique_id=1111052375]
 visible = false
