@@ -8,7 +8,7 @@ extends Node2D
 @onready var label: Label = $Label
 
 
-var active_areas: Array[Area2D] = []
+var active_areas: Array[InteractionArea] = []
 var can_interact: = true
 
 
@@ -20,25 +20,27 @@ func register_area(area: InteractionArea):
 	active_areas.push_back(area)
 
 func unregister_area(area: InteractionArea):
-	var index = active_areas.find(area)
-	#checks if index exists in the array
-	if index != -1:
-		active_areas.remove_at(index)
+	active_areas.erase(area)
 
 func _process(delta: float) -> void:
+	active_areas = active_areas.filter(func(a): return is_instance_valid(a))
+	
 	if active_areas.size() > 0 && can_interact:
 		active_areas.sort_custom(_sort_by_distance_to_player)
-		label.text = active_areas[0].action_hint
-		label.global_position = active_areas[0].global_position
+		var nearest = active_areas[0]
+		
+		label.text = nearest.action_hint
+		label.global_position = nearest.global_position
 		label.global_position.y -= 32
 		label.global_position.x -= label.size.x / 2
+		
 		label.show()
 	else:
 		label.hide()
 
 func _sort_by_distance_to_player(area1, area2):
-	var area1_to_player = player.global_position.direction_to(area1.global_position) # added the .global_position
-	var area2_to_player = player.global_position.direction_to(area2.global_position)
+	var area1_to_player = player.global_position.distance_to(area1.global_position) # added the .global_position
+	var area2_to_player = player.global_position.distance_to(area2.global_position)
 	return area1_to_player < area2_to_player
 
 func _input(event: InputEvent) -> void:
@@ -48,5 +50,4 @@ func _input(event: InputEvent) -> void:
 			label.hide()
 			
 			await active_areas[0].interact.call()
-			
 			can_interact = true

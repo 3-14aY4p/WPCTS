@@ -1,0 +1,1 @@
+class_name DialogueFunction extends DialogueItem

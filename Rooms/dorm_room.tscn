@@ -6,10 +6,12 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_sd2qi"]
 [ext_resource type="PackedScene" uid="uid://d0kyujlab25db" path="res://Components/StaticObjects/interactables/bed.tscn" id="5_grixu"]
 [ext_resource type="PackedScene" uid="uid://bua4khv7bd5h2" path="res://Components/ExitPoints/exit_point.tscn" id="5_kawv0"]
-[ext_resource type="Script" uid="uid://g3o3sjnstt0y" path="res://Components/DialogueSystem/resource/DialogueExport.gd" id="6_0byin"]
 [ext_resource type="PackedScene" uid="uid://d00j6hrwxh0m4" path="res://Components/StaticObjects/interactables/study_table.tscn" id="6_24t0w"]
-[ext_resource type="Script" uid="uid://bpllf8u1dqqr0" path="res://Components/DialogueSystem/resource/DialogueText.gd" id="7_fclya"]
+[ext_resource type="Script" uid="uid://cop63llijgx5q" path="res://Components/DialogueSystem/resource/_dialogue_item.gd" id="6_vfyaq"]
+[ext_resource type="Script" uid="uid://bi2x32ccd7xnj" path="res://Components/DialogueSystem/resource/dialogue_text.gd" id="7_3o8hm"]
 [ext_resource type="PackedScene" uid="uid://kvu5qafjiwcw" path="res://Components/StaticObjects/interactables/small_bookshelf.tscn" id="7_uhyii"]
+[ext_resource type="Script" uid="uid://d3h34jw7b8vif" path="res://Components/DialogueSystem/resource/dialogue_function.gd" id="8_3uny8"]
+[ext_resource type="Script" uid="uid://ct3eqwqpdar0j" path="res://Components/DialogueSystem/resource/dialogue_choice.gd" id="9_r5huf"]
 [ext_resource type="PackedScene" uid="uid://odnfek7pfsa4" path="res://Components/Objects/boxes/medium_box.tscn" id="10_kawv0"]
 [ext_resource type="Script" uid="uid://4u4srr8ec6wj" path="res://Components/Objects/res/ObjectData.gd" id="11_0byin"]
 [ext_resource type="PackedScene" uid="uid://cwjjibtb4meo6" path="res://Components/Objects/boxes/large_box.tscn" id="11_f0b02"]
@@ -20,6 +22,42 @@
 script = ExtResource("4_sd2qi")
 duration = 0.0
 metadata/_custom_type_script = "uid://8umksf8e80fw"
+
+[sub_resource type="Resource" id="Resource_3uny8"]
+script = ExtResource("7_3o8hm")
+speaker_name = "Colin"
+speaker_anim = "mc_neutral"
+text = "I'm a little sleepy..."
+metadata/_custom_type_script = "uid://bi2x32ccd7xnj"
+
+[sub_resource type="Resource" id="Resource_qjd2f"]
+script = ExtResource("9_r5huf")
+text = "head to sleep?"
+choice_text = Array[String](["yes", "no"])
+choice_function_call = Array[ExtResource("8_3uny8")]([null, null])
+metadata/_custom_type_script = "uid://ct3eqwqpdar0j"
+
+[sub_resource type="Resource" id="Resource_r5huf"]
+script = ExtResource("7_3o8hm")
+speaker_name = "Colin"
+speaker_anim = "mc_neutral"
+text = "i should probably finish those assignments..."
+metadata/_custom_type_script = "uid://bi2x32ccd7xnj"
+
+[sub_resource type="Resource" id="Resource_icxkh"]
+script = ExtResource("7_3o8hm")
+speaker_name = "Colin"
+speaker_anim = "mc_neutral"
+text = "[shake]i don't want to ever see prof. mad again...[/shake]"
+text_speed = 45.0
+metadata/_custom_type_script = "uid://bi2x32ccd7xnj"
+
+[sub_resource type="Resource" id="Resource_hu2q0"]
+script = ExtResource("7_3o8hm")
+speaker_name = "Colin"
+speaker_anim = "mc_neutral"
+text = "all my old notes are here... which one should i read?"
+metadata/_custom_type_script = "uid://bi2x32ccd7xnj"
 
 [sub_resource type="Resource" id="Resource_fclya"]
 script = ExtResource("11_0byin")
@@ -36,13 +74,8 @@ script = ExtResource("11_0byin")
 object_mass = 12.0
 metadata/_custom_type_script = "uid://4u4srr8ec6wj"
 
-[sub_resource type="Resource" id="Resource_0byin"]
-script = ExtResource("7_fclya")
-text = "the door is locked."
-metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0byin"]
-size = Vector2(12, 2)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7budg"]
+size = Vector2(4, 2)
 
 [node name="DormRoom" type="Node2D" unique_id=452890962]
 y_sort_enabled = true
@@ -81,13 +114,18 @@ y_sort_enabled = true
 
 [node name="Bed" parent="StaticObjects" unique_id=777938724 instance=ExtResource("5_grixu")]
 position = Vector2(141, 133)
+dialogue = Array[ExtResource("6_vfyaq")]([SubResource("Resource_3uny8"), SubResource("Resource_qjd2f")])
 
 [node name="StudyTable" parent="StaticObjects" unique_id=952759821 instance=ExtResource("6_24t0w")]
 position = Vector2(181, 89)
+collision_mask = 0
+dialogue = Array[ExtResource("6_vfyaq")]([SubResource("Resource_r5huf"), SubResource("Resource_icxkh")])
 
 [node name="SmallBookshelf" parent="StaticObjects" unique_id=552261382 instance=ExtResource("7_uhyii")]
 z_index = 1
 position = Vector2(201, 86)
+collision_mask = 0
+dialogue = Array[ExtResource("6_vfyaq")]([SubResource("Resource_hu2q0")])
 
 [node name="Objects" type="Node2D" parent="." unique_id=1686050512 groups=["obj_container"]]
 y_sort_enabled = true
@@ -110,10 +148,9 @@ object_data = SubResource("Resource_kchg6")
 position = Vector2(152, 81)
 point_id = "d2dh"
 scene_uid = "uid://bjlu2fvcl2hrn"
-dialogue = Array[ExtResource("6_0byin")]([SubResource("Resource_0byin")])
 
-[node name="CollisionShape2D" parent="ExitPoints/ExitPoint/InteractionArea" parent_id_path=PackedInt32Array(510584444, 1730564579) index="0" unique_id=528310991]
-shape = SubResource("RectangleShape2D_0byin")
+[node name="CollisionShape2D" parent="ExitPoints/ExitPoint" index="0" unique_id=1468312071]
+shape = SubResource("RectangleShape2D_7budg")
 
 [node name="EntryPoints" type="Node2D" parent="." unique_id=860928522]
 

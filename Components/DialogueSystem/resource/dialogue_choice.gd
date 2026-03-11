@@ -1,4 +1,4 @@
-class_name DialogueChoice extends DE
+class_name DialogueChoice extends DialogueItem
 
 @export var speaker_name: String
 @export var speaker_anim: String

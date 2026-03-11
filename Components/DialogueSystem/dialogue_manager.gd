@@ -1,16 +1,20 @@
 class_name DialogueManager extends Control
 
 
-@onready var speaker_name: RichTextLabel = $CanvasLayer/NinePatchRect/SpeakerName
 @onready var speaker_parent: Control = $CanvasLayer/HBoxContainer/SpeakerParent
 @onready var speaker_anim: AnimatedSprite2D = $CanvasLayer/HBoxContainer/SpeakerParent/SpeakerSprite
+@onready var speaker_name: RichTextLabel = $CanvasLayer/NinePatchRect/SpeakerName
+
 @onready var dialogue_label: RichTextLabel = $CanvasLayer/HBoxContainer/TextBox/DialogueLabel
-@onready var button_container: HBoxContainer = $CanvasLayer/HBoxContainer/TextBox/ButtonContainer
 @onready var indicator: AnimatedSprite2D = $CanvasLayer/NinePatchRect/Indicator
+
+@onready var button_container: HBoxContainer = $CanvasLayer/HBoxContainer/TextBox/ButtonContainer
+
+
 
 @onready var player: Player = get_tree().get_first_node_in_group("player")
 
-var dialogue: Array[DE]
+var dialogue: Array[DialogueItem]
 var current_dialogue_item: int = 0
 var next_item: bool = true
 

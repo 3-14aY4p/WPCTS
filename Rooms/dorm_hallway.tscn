@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_yttog"]
 [ext_resource type="PackedScene" uid="uid://cdovv3a0tvpat" path="res://Components/TileMaps/tile_maps.tscn" id="4_tnrjy"]
 [ext_resource type="PackedScene" uid="uid://bxmwsl0ho2v2r" path="res://Components/StaticObjects/inspection_point.tscn" id="5_5es0y"]
-[ext_resource type="Script" uid="uid://g3o3sjnstt0y" path="res://Components/DialogueSystem/resource/DialogueExport.gd" id="6_oeu3i"]
-[ext_resource type="Script" uid="uid://bpllf8u1dqqr0" path="res://Components/DialogueSystem/resource/DialogueText.gd" id="7_6sglm"]
+[ext_resource type="Script" uid="uid://cop63llijgx5q" path="res://Components/DialogueSystem/resource/_dialogue_item.gd" id="6_75w4o"]
+[ext_resource type="Script" uid="uid://bi2x32ccd7xnj" path="res://Components/DialogueSystem/resource/dialogue_text.gd" id="7_0505o"]
 [ext_resource type="PackedScene" uid="uid://cwjjibtb4meo6" path="res://Components/Objects/boxes/large_box.tscn" id="8_jdxo8"]
 [ext_resource type="PackedScene" uid="uid://odnfek7pfsa4" path="res://Components/Objects/boxes/medium_box.tscn" id="9_sufnq"]
 [ext_resource type="PackedScene" uid="uid://4ermala1oh38" path="res://Components/Objects/boxes/small_box.tscn" id="10_rirg4"]
@@ -18,38 +18,31 @@ script = ExtResource("3_yttog")
 duration = 0.0
 metadata/_custom_type_script = "uid://8umksf8e80fw"
 
-[sub_resource type="Resource" id="Resource_fd32k"]
-script = ExtResource("7_6sglm")
+[sub_resource type="Resource" id="Resource_yttog"]
+script = ExtResource("7_0505o")
 text = "RM 403"
 text_speed = 0.0
-metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
+metadata/_custom_type_script = "uid://bi2x32ccd7xnj"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bpcos"]
-size = Vector2(6, 2)
+size = Vector2(3, 2)
 
-[sub_resource type="Resource" id="Resource_ko3pu"]
-script = ExtResource("7_6sglm")
+[sub_resource type="Resource" id="Resource_75w4o"]
+script = ExtResource("7_0505o")
 text = "RM 401"
 text_speed = 0.0
-metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
+metadata/_custom_type_script = "uid://bi2x32ccd7xnj"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ko3pu"]
-size = Vector2(6, 2)
+size = Vector2(3, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3cld"]
-size = Vector2(12, 2)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pv2yw"]
+size = Vector2(4, 2)
 
-[sub_resource type="Resource" id="Resource_i2ytm"]
-script = ExtResource("7_6sglm")
-speaker_name = "Colin"
-speaker_anim = "mc_neutral"
-text = "that's not my room."
-metadata/_custom_type_script = "uid://bpllf8u1dqqr0"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tucv"]
+size = Vector2(4, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2ytm"]
-size = Vector2(12, 2)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fd32k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75w4o"]
 size = Vector2(32, 4)
 
 [node name="DormHallway" type="Node2D" unique_id=761135944]
@@ -88,14 +81,14 @@ tile_map_data = PackedByteArray("AAANAAcAAgABAAIAAAANAAYAAgABAAEAAAANAAUAAgABAAE
 
 [node name="InspectionPoint" parent="InspectionPoints" unique_id=956481942 instance=ExtResource("5_5es0y")]
 position = Vector2(104, 81)
-dialogue = Array[ExtResource("6_oeu3i")]([SubResource("Resource_fd32k")])
+dialogue = Array[ExtResource("6_75w4o")]([SubResource("Resource_yttog")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InspectionPoints/InspectionPoint/InteractionArea" parent_id_path=PackedInt32Array(956481942, 1730564579) index="0" unique_id=1302828875]
 shape = SubResource("RectangleShape2D_bpcos")
 
 [node name="InspectionPoint2" parent="InspectionPoints" unique_id=491155965 instance=ExtResource("5_5es0y")]
 position = Vector2(232, 81)
-dialogue = Array[ExtResource("6_oeu3i")]([SubResource("Resource_ko3pu")])
+dialogue = Array[ExtResource("6_75w4o")]([SubResource("Resource_75w4o")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InspectionPoints/InspectionPoint2/InteractionArea" parent_id_path=PackedInt32Array(491155965, 1730564579) index="0" unique_id=1835779938]
 shape = SubResource("RectangleShape2D_ko3pu")
@@ -137,31 +130,23 @@ position = Vector2(88, 81)
 point_id = "dh2d"
 scene_uid = "uid://bdo4dioigr6ea"
 
-[node name="InteractionArea" parent="ExitPoints/ExitPoint" index="0" unique_id=1730564579]
-action_hint = "[ E ] enter"
-
-[node name="CollisionShape2D" parent="ExitPoints/ExitPoint/InteractionArea" index="0" unique_id=528310991]
-shape = SubResource("RectangleShape2D_v3cld")
+[node name="CollisionShape2D" parent="ExitPoints/ExitPoint" index="0" unique_id=1468312071]
+shape = SubResource("RectangleShape2D_pv2yw")
 
 [node name="ExitPoint2" parent="ExitPoints" unique_id=128402897 instance=ExtResource("11_2ngnh")]
 position = Vector2(216, 81)
 is_locked = true
-dialogue = Array[ExtResource("6_oeu3i")]([SubResource("Resource_i2ytm")])
 
-[node name="InteractionArea" parent="ExitPoints/ExitPoint2" index="0" unique_id=1730564579]
-action_hint = "[ E ] enter"
-
-[node name="CollisionShape2D" parent="ExitPoints/ExitPoint2/InteractionArea" index="0" unique_id=528310991]
-shape = SubResource("RectangleShape2D_i2ytm")
+[node name="CollisionShape2D" parent="ExitPoints/ExitPoint2" index="0" unique_id=1468312071]
+shape = SubResource("RectangleShape2D_0tucv")
 
 [node name="ExitPoint3" parent="ExitPoints" unique_id=1784514380 instance=ExtResource("11_2ngnh")]
 position = Vector2(272, 142)
 point_id = "dh2dl"
 scene_uid = "uid://dwetsi10qg24f"
-is_door = false
 
-[node name="CollisionShape2D" parent="ExitPoints/ExitPoint3/InteractionArea" parent_id_path=PackedInt32Array(1784514380, 1730564579) index="0" unique_id=528310991]
-shape = SubResource("RectangleShape2D_fd32k")
+[node name="CollisionShape2D" parent="ExitPoints/ExitPoint3" index="0" unique_id=1468312071]
+shape = SubResource("RectangleShape2D_75w4o")
 
 [node name="EntryPoints" type="Node2D" parent="." unique_id=588174552]
 

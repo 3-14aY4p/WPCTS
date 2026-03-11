@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2tmm2aequm2a"]
 
-[ext_resource type="Script" uid="uid://eqvjk84g40ou" path="res://Components/DialogueSystem/dialogue_manager.gd" id="1_r4s6j"]
+[ext_resource type="Script" uid="uid://cr3flc86f3dfw" path="res://Components/DialogueSystem/dialogue_manager.gd" id="1_6saq7"]
 [ext_resource type="Texture2D" uid="uid://bqbqdknptsofc" path="res://Assets/art/UI/dialogue_box.png" id="1_tra1r"]
 [ext_resource type="Texture2D" uid="uid://u0vg8vug2jvi" path="res://Assets/art/portraits/mc_neutral.png" id="2_t1613"]
 [ext_resource type="Texture2D" uid="uid://qfyuff61b341" path="res://Assets/art/portraits/temp_neutral.png" id="3_vmmjh"]
@@ -66,7 +66,7 @@ animations = [{
 "texture": ExtResource("3_vmmjh")
 }],
 "loop": true,
-"name": &"_temp_neutral",
+"name": &"_neutral",
 "speed": 5.0
 }, {
 "frames": [{
@@ -112,7 +112,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("1_r4s6j")
+script = ExtResource("1_6saq7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=440206541]
 
@@ -175,6 +175,10 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="MarginL" type="Control" parent="CanvasLayer/HBoxContainer" unique_id=1716710043]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
 [node name="SpeakerParent" type="Control" parent="CanvasLayer/HBoxContainer" unique_id=584662149]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
@@ -183,7 +187,7 @@ layout_mode = 2
 position = Vector2(32, 6)
 scale = Vector2(1.9999999, 1.9999999)
 sprite_frames = SubResource("SpriteFrames_vmmjh")
-animation = &"_temp_neutral"
+animation = &"_neutral"
 
 [node name="TextBox" type="VBoxContainer" parent="CanvasLayer/HBoxContainer" unique_id=533653048]
 custom_minimum_size = Vector2(200, 56)
@@ -197,7 +201,7 @@ theme_override_colors/default_color = Color(0.69803923, 0.7607843, 0.49019608, 1
 theme_override_fonts/normal_font = ExtResource("4_sdixd")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "dialogue label"
+text = "placeholder text"
 scroll_active = false
 vertical_alignment = 1
 
@@ -205,3 +209,7 @@ vertical_alignment = 1
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="MarginR" type="Control" parent="CanvasLayer/HBoxContainer" unique_id=307062966]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
